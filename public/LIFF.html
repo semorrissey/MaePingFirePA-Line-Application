@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MaePing National Park Personal Assistant</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <script src="test.js"></script>
+  <link rel='stylesheet' href='/index.css'>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" onclick="changePage('Home');">MaePing FirePA</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#" onclick="changePage('Home');">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="changePage('LINE');">LINE</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" onclick="changePage('Fire Timeline');">Fire Timeline</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Instructional Videos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#" onclick="changePage('Nasa FIRMS');">Nasa FIRMS</a></li>
+              <li><a class="dropdown-item" href="#" onclick="changePage('CuSense');">CuSense</a></li>
+              <li><a class="dropdown-item" href="#" onclick="changePage('Windy');">Windy</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="Home">
+    <div class="container-sm" id="center">
+      <div style="  margin: auto;
+  width: 50%; display: inline;">
+        <h1 class="display-1"> Add Us On LINE!</h1>
+        <h2 class="display-2"> Search for @968shmpp</h2>
+      </div>
+      <br>
+      <div style="  margin: auto;
+    width: 50%; display: block;">
+        <h6 class="display-6">Scan our QR Code</h6>
+        <img src="https://qr-official.line.me/sid/L/968shmpp.png" class="img-thumbnail">
+      </div>
+    </div>
+  </div>
+
+  <div id="LINE" style="display: none;">
+ <div class="container-sm" id="center">
+      <h1 class="display-1">LINE</h1>
+    </div>
+    <!-- place fire timeline in container div once finished or for testing -->
+    <div class="container-fluid"></div>    
+    </div>
+  <div id="Fire Timeline" style="display: none;">
+    <div class="container-sm" id="center">
+      <h1 class="display-1">Fire Hotspot Timeline</h1>
+    </div>
+    <!-- place fire timeline in container div once finished or for testing -->
+    <div class="container-fluid"></div>
+  </div>
+  <div id="Nasa FIRMS" style="display: none;">
+    <h1 class="display-1"> Nasa FIRMS</h1>
+    <p> This is a placeholder video </p>
+    <div class="container-sm" id="center">
+      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/_1mm1VJbyfo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+
+  </div>
+  <div id="CuSense" style="display: none;">
+    <h1 class="display-1"> CuSense</h1>
+    <p> This is a placeholder video </p>
+    <div class="container-sm" id="center">
+      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/7jBJfvdzxXU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+  <div id="Windy" style="display: none;">
+    <h1 class="display-1"> Windy</h1>
+    <p> This is a placeholder video </p>
+    <div class="container-sm" id="center">
+      <iframe width="560" height="315" class="embed-responsive-item" src="https://youtube.com/embed/fWKB8zdVM-U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+    </div>
+  </div>
+</body>
+
+</html>
