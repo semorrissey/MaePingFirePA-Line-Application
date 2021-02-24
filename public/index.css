@@ -1,5 +1,22 @@
 #center{
      margin: auto;
-     width: 100%;
+     width: 50%;
     display:block;
+}
+
+div {
+    display: inline-block;
+}
+
+
+
+.threeSpread {
+
+margin: 0 40px 40px 40px
+
+
+}
+
+div.inner, div.outer {
+    max-width: 30%;
 }
