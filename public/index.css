@@ -1,20 +1,15 @@
 @import '~mdb-ui-kit/css/mdb.min.css';
 
-#center{
-     margin: auto;
-     width: 100%;
-    display:block;
+#center {
+  margin: auto;
+  width: 100%;
+  display: block;
 }
 
-
-
 .threeSpread {
-
-margin: 0 40px 40px 40px
-
-
+  margin: 0 40px 40px 40px
 }
 
 div.inner, div.outer {
-    max-width: 30%;
+  max-width: 30%;
 }

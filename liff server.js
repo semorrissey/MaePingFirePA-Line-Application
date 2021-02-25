@@ -18,7 +18,9 @@ const client = new line.Client(config);
 app.use(express.static('public'));
 
 app.get('/send-id', function(req, res) {
-    res.json({id: myLiffId});
+  res.json({
+    id: myLiffId
+  });
 });
 
 app.get("/", function(req, res) {
@@ -44,15 +46,36 @@ function handleEvent(event) {
     return Promise.resolve(null);
   }
 
-  // create a echoing text message
-  const echo = { type: 'text', text: event.message.text };
-    console.log(event.message.text);
-if(event.message.text.match("Hello")){
-    return client.replyMessage(event.replyToken, {type: 'text', text: "yo"});
-}
-
+  // create a text message
+  const
+  default = {
+    type: 'text',
+    text: "This is a default message"
+  };
+  if (event.message.text.match("NASA FIRMS")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for NASA FIRMS will be sent"
+    });
+  } else if (event.message.text.match("CUsense")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for CuSense will be sent"
+    });
+  } else if (event.message.text.match("Windy")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for Windy will be sent"
+    });
+  } else if (event.message.text.match("About Bushfire")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for About Bushfire will be sent"
+    });
+  }
   // use reply API
-  return client.replyMessage(event.replyToken, echo);
+  return client.replyMessage(event.replyToken,
+    default);
 }
 
 app.listen(port, () => console.log(`app listening on port ${port}!`));
