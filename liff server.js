@@ -47,10 +47,9 @@ function handleEvent(event) {
   }
 
   // create a text message
-  const
-  default = {
+  const echo = {
     type: 'text',
-    text: "This is a default message"
+    text: event.message.text
   };
   if (event.message.text.match("NASA FIRMS")) {
     return client.replyMessage(event.replyToken, {
@@ -75,7 +74,7 @@ function handleEvent(event) {
   }
   // use reply API
   return client.replyMessage(event.replyToken,
-    default);
+    echo);
 }
 
 app.listen(port, () => console.log(`app listening on port ${port}!`));
