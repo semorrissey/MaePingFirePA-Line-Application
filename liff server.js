@@ -72,7 +72,8 @@ function handleEvent(event) {
       })
       .then(stationData => {
         const data = stationData; //JSON.stringify(stationData);
-        console.log(data.data[0].time);
+        const stationData = data.data.json();
+        console.log(stationData);
       });
 
 
