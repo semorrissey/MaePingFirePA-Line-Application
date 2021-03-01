@@ -50,7 +50,7 @@ async function cuSenseFetch() {
       body: '{\"topic\":\"cusensor2/60019440B80B\"}'
     })
     .then(response => {
-      let json = await response.json();
+      let json = response.json();
       return json;
     })
     .then(responseData => {
