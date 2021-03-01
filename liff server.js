@@ -70,7 +70,7 @@ function handleEvent(event) {
         return response.json();
       })
       .then(stationData => {
-        console.log(stationData);
+        console.log(JSON.stringify(stationData.data));
       })
 
     return client.replyMessage(event.replyToken, {
