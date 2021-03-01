@@ -71,10 +71,11 @@ function handleEvent(event) {
         return response.json();
       })
       .then(stationData => {
-        const data = JSON.parse(stationData); //JSON.stringify(stationData);
+        const data = stationData; //JSON.stringify(stationData);
         console.log(data);
-        console.log(data.data);
-        console.log(data.data.time);
+        const something = JSON.parse(data.data);
+        console.log(something);
+        console.log(something.time);
       });
 
 
