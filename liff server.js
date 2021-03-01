@@ -71,10 +71,12 @@ function handleEvent(event) {
         return response.json();
       })
       .then(stationData => {
-        return stationData;
+        return JSON.stringify(stationData);
       });
 
-    console.log(data.data["time"]);
+    console.log(data);
+    console.log(data.data);
+    console.log(data.data["Time"]);
 
     return client.replyMessage(event.replyToken, {
       type: 'text',
