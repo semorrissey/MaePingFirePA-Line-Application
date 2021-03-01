@@ -75,6 +75,8 @@ function handleEvent(event) {
         const stationData = JSON.stringify(responseData);
         console.log(responseData);
         const test = responseData["cusensor2/60019440B80B"].data[0].time;
+        console.log(test);
+        
       });
 
 
