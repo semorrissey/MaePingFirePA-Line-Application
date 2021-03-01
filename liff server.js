@@ -66,7 +66,7 @@ async function cuSenseFetch() {
 }
 
 // event handler
-function handleEvent(event) {
+async function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
     return Promise.resolve(null);
@@ -84,8 +84,8 @@ function handleEvent(event) {
     });
   } else if (event.message.text.match("CUsense")) {
 
-    const fetchCall = cuSenseFetch();
-    console.log(cuSenseFetch());
+    let fetchCall = await cuSenseFetch();
+    console.log(fetchCall);
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "yo"
