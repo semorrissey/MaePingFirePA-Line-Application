@@ -74,6 +74,8 @@ function handleEvent(event) {
         return stationData;
       });
 
+    console.log(data.data["time"]);
+
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Appropriate Message for CuSense will be sent"
