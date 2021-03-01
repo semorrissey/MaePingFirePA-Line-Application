@@ -57,7 +57,7 @@ async function cuSenseFetch() {
       const stationData = responseData["cusensor2/60019440B80B"].data;
       stationData.name = responseData["cusensor2/60019440B80B"].info["name"];
       stationData.province = responseData["cusensor2/60019440B80B"].info["province"];
-
+      console.log(stationData[0].time.substr(0, 18));
       const date = new Date(stationData[0].time.substr(0, 18));
       const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "CO2 concentration is " + stationData[0]["co2"] + ", \n" + "The humidity is " + stationData[0].humid;
 
@@ -85,10 +85,10 @@ async function handleEvent(event) {
   } else if (event.message.text.match("CUsense")) {
 
     let fetchCall = await cuSenseFetch();
-    console.log(fetchCall);
+
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "yo"
+      text: fetchCall
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
