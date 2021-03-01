@@ -1,6 +1,6 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
-const fetch = require('fetch');
+const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
