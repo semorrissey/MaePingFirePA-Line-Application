@@ -87,7 +87,6 @@ function handleEvent(event) {
   } else if (event.message.text.match("CUsense")) {
 
     const fetchCall = cuSenseFetch();
-    fetchCall.
 
     return client.replyMessage(event.replyToken, {
       type: 'text',
