@@ -57,6 +57,17 @@ function handleEvent(event) {
       text: "Appropriate Message for NASA FIRMS will be sent"
     });
   } else if (event.message.text.match("CUsense")) {
+    fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all')
+      .then(response => {
+        return response.json();
+      })
+      .then(stationData => {
+        return client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: JSON.stringify(stationData)
+        });
+      })
+
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Appropriate Message for CuSense will be sent"
