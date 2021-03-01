@@ -40,25 +40,25 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-async function cuSenseFetch() {
+async function cuSenseFetch(sensor) {
   return await fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
       method: 'POST',
       headers: {
         'X-Gravitee-Api-Key': '3d9c7df5-1262-45ad-a311-ff5ae72b4cb8',
         'Content-Type': 'application/json'
       },
-      body: '{\"topic\":\"cusensor2/60019440B80B\"}'
+      body: '{\"topic\":\"' + sensor + '\"}'
     })
     .then(response => {
       let json = response.json();
       return json;
     })
     .then(responseData => {
-      const stationData = responseData["cusensor2/60019440B80B"].data;
-      stationData.name = responseData["cusensor2/60019440B80B"].info["name"];
-      stationData.province = responseData["cusensor2/60019440B80B"].info["province"];
-      console.log(stationData[0].time.substr(0, 18));
-      const date = new Date(stationData[0].time.substr(0, 18));
+      const stationData = responseData["sensor"].data;
+      stationData.name = responseData["sensor"].info["name"];
+      stationData.province = responseData["sensor"].info["province"];
+
+      const date = new Date(stationData[0].time.substr(0, 19));
       const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "CO2 concentration is " + stationData[0]["co2"] + ", \n" + "The humidity is " + stationData[0].humid;
 
       return messageResponse;
@@ -84,11 +84,14 @@ async function handleEvent(event) {
     });
   } else if (event.message.text.match("CUsense")) {
 
-    let fetchCall = await cuSenseFetch();
-
+    let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
+    let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: fetchCall
+      text: sensorOne
+    }, {
+      type: 'text',
+      text: sensorTwo
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
