@@ -41,7 +41,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 async function cuSenseFetch() {
-  await fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
+  let result = await Promise.all([fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
       method: 'POST',
       headers: {
         'X-Gravitee-Api-Key': '3d9c7df5-1262-45ad-a311-ff5ae72b4cb8',
@@ -63,6 +63,8 @@ async function cuSenseFetch() {
 
       return messageResponse;
     });
+  ]);
+  return result;
 }
 
 // event handler
@@ -85,10 +87,11 @@ function handleEvent(event) {
   } else if (event.message.text.match("CUsense")) {
 
     const fetchCall = cuSenseFetch();
+    fetchCall.
 
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: fetchCall.toString()
+      text: fetchCall
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
