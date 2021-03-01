@@ -67,44 +67,43 @@ async function cuSenseFetch(sensor) {
 
 // event handler
 async function handleEvent(event) {
-    if (event.type !== 'message' || event.message.type !== 'text') {
-      // ignore non-text-message event
-      return Promise.resolve(null);
-    }
+  if (event.type !== 'message' || event.message.type !== 'text') {
+    // ignore non-text-message event
+    return Promise.resolve(null);
+  }
 
-    // create a text message
-    const echo = {
+  // create a text message
+  const echo = {
+    type: 'text',
+    text: event.message.text
+  };
+  if (event.message.text.match("NASA FIRMS")) {
+    return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: event.message.text
-    };
-    if (event.message.text.match("NASA FIRMS")) {
-      return client.replyMessage(event.replyToken, {
-        type: 'text',
-        text: "Appropriate Message for NASA FIRMS will be sent"
-      });
-    } else if (event.message.text.match("CUsense")) {
+      text: "Appropriate Message for NASA FIRMS will be sent"
+    });
+  } else if (event.message.text.match("CUsense")) {
 
-      let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
-      let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
-      return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: sensorOne + "\n" + sensorTwo
-        },
-      }
-      else if (event.message.text.match("Windy")) {
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: "Appropriate Message for Windy will be sent"
-        });
-      } else if (event.message.text.match("About Bushfire")) {
-        return client.replyMessage(event.replyToken, {
-          type: 'text',
-          text: "Appropriate Message for About Bushfire will be sent"
-        });
-      }
-      // use reply API
-      return client.replyMessage(event.replyToken,
-        echo);
-    }
+    let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
+    let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: sensorOne + "\n" + sensorTwo
+    });
+  } else if (event.message.text.match("Windy")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for Windy will be sent"
+    });
+  } else if (event.message.text.match("About Bushfire")) {
+    return client.replyMessage(event.replyToken, {
+      type: 'text',
+      text: "Appropriate Message for About Bushfire will be sent"
+    });
+  }
+  // use reply API
+  return client.replyMessage(event.replyToken,
+    echo);
+}
 
-    app.listen(port, () => console.log(`app listening on port ${port}!`));
+app.listen(port, () => console.log(`app listening on port ${port}!`));
