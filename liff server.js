@@ -70,10 +70,10 @@ function handleEvent(event) {
       .then(response => {
         return response.json();
       })
-      .then(stationData => {
-        const data = stationData; //JSON.stringify(stationData);
-
-        console.log(data[0].data[0]);
+      .then(responseData => {
+        const stationInformation = responseData;
+        const stationData = JSON.stringify(responseData);
+        console.log(responseData);
       });
 
 
