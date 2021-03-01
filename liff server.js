@@ -86,7 +86,7 @@ function handleEvent(event) {
     console.log(fetchCall);
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: fetchCall
+      text: "yo"
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
