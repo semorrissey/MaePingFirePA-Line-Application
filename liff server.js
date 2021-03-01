@@ -73,22 +73,18 @@ function handleEvent(event) {
       .then(responseData => {
         const stationData = responseData["cusensor2/60019440B80B"].data;
         stationData.name = responseData.info[0].name;
-        stationData.province = responseData.infor[0].province;
+        stationData.province = responseData.info[0].province;
         console.log(responseData);
         console.log(stationData);
-        return stationData;
+
+        const date = new Date(stationData[0].time.substr(0, 18));
+        const messageResponse = "On " + date.toDateString + ", \n " + "the temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "CO2 concentration is " + stationData[0]["co2"] + ", \n" + "The humidity is " + stationData[0].humid;
+
+        return client.replyMessage(event.replyToken, {
+          type: 'text',
+          text: messageResponse;
+        });
       });
-      
-      console.log(fetchCall);
-      
-      const date =  new Date(fetchCall[0]["time"].substr(0,18));
-    
-      const messageResponse = "On " + date.toDateString + ", \n " + "the temperature is " + fetchCall[0].temp + " ℃, \n" + "PM1 concentration is " + fetchCall[0]["pm1"] + ", \n" + "PM25 concentration is " + fetchCall[0]["pm25"] + ", \n" + "PM10 concentration is " + fetchCall[0]["pm10"] + ", \n" + "CO2 concentration is " + fetchCall[0]["co2"] + ", \n" + "The humidity is " + fetchCall[0].humid;
-      
-    return client.replyMessage(event.replyToken, {
-      type: 'text',
-      text: messageResponse
-    });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
       type: 'text',
