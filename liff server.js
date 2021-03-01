@@ -79,9 +79,12 @@ function handleEvent(event) {
         return stationData;
       });
       
-      const date =  new Date(fetchCall[0].time.substr(0,18));
+      console.log(fetchCall);
+      
+      const date =  new Date(fetchCall[0]["time"].substr(0,18));
     
-      const messageResponse = "On " + date.toDateString + ", \n " + "the temperature is " + fetchCall[0].temp + " ℃, \n" + "PM1 concentration is " + fetchCall[0]["pm1"] + ", \n" + "PM25 concentration is " + fetchCall[0]["pm25"] + ", \n" + "PM10 concentration is " + fetchCall[0]["pm10"] + ", \n" + "CO2 concentration is " + fetchCall[0]["co2"] + ", \n" + "The humidity is " + fetchCall[0].humid
+      const messageResponse = "On " + date.toDateString + ", \n " + "the temperature is " + fetchCall[0].temp + " ℃, \n" + "PM1 concentration is " + fetchCall[0]["pm1"] + ", \n" + "PM25 concentration is " + fetchCall[0]["pm25"] + ", \n" + "PM10 concentration is " + fetchCall[0]["pm10"] + ", \n" + "CO2 concentration is " + fetchCall[0]["co2"] + ", \n" + "The humidity is " + fetchCall[0].humid;
+      
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: messageResponse
