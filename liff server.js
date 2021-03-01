@@ -72,8 +72,8 @@ function handleEvent(event) {
       })
       .then(responseData => {
         const stationData = responseData["cusensor2/60019440B80B"].data;
-        stationData.name = responseData["cusensor2/60019440B80B"].info[0].name;
-        stationData.province = responseData["cusensor2/60019440B80B"].info[0].province;
+        stationData.name = responseData["cusensor2/60019440B80B"].info["name"];
+        stationData.province = responseData["cusensor2/60019440B80B"].info["province"];
         console.log(responseData);
         console.log(stationData);
 
