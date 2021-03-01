@@ -87,10 +87,10 @@ function handleEvent(event) {
   } else if (event.message.text.match("CUsense")) {
 
     const fetchCall = cuSenseFetch();
-
+    console.log(fetchCall);
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: fetchCall
+      text: fetchCall.toLocaleString()
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
