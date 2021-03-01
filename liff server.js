@@ -78,7 +78,7 @@ function handleEvent(event) {
         console.log(stationData);
 
         const date = new Date(stationData[0].time.substr(0, 18));
-        const messageResponse = "On " + date.toDateString + ", \n " + "the temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "CO2 concentration is " + stationData[0]["co2"] + ", \n" + "The humidity is " + stationData[0].humid;
+        const messageResponse = "On " + date.toDateString() + ", \n " + "the temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "CO2 concentration is " + stationData[0]["co2"] + ", \n" + "The humidity is " + stationData[0].humid;
         console.log(messageResponse);
         return messageResponse;
       });
@@ -86,7 +86,7 @@ function handleEvent(event) {
     console.log(fetchCall);
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "yo"
+      text: fetchCall.toString();
     });
   } else if (event.message.text.match("Windy")) {
     return client.replyMessage(event.replyToken, {
