@@ -59,7 +59,7 @@ function handleEvent(event) {
     });
   } else if (event.message.text.match("CUsense")) {
 
-    const data = fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
+    const fetchCall = fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
         method: 'POST',
         headers: {
           'X-Gravitee-Api-Key': '3d9c7df5-1262-45ad-a311-ff5ae72b4cb8',
@@ -71,12 +71,13 @@ function handleEvent(event) {
         return response.json();
       })
       .then(stationData => {
-        return JSON.stringify(stationData);
+        const data = JSON.stringify(stationData);
+        console.log(data);
+        console.log(data.data);
+        console.log(data.data["Time"]);
       });
 
-    console.log(data);
-    console.log(data.data);
-    console.log(data.data["Time"]);
+
 
     return client.replyMessage(event.replyToken, {
       type: 'text',
