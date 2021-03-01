@@ -71,15 +71,11 @@ function handleEvent(event) {
         return response.json();
       })
       .then(responseData => {
-        const stationInformation = responseData;
-        const stationData = JSON.stringify(responseData);
+        const stationData = responseData["cusensor2/60019440B80B"].data;
         console.log(responseData);
-        const test = responseData["cusensor2/60019440B80B"].data[0].time;
-        console.log(test);
-        
+        console.log(stationData);
+        return stationData;
       });
-
-
 
     return client.replyMessage(event.replyToken, {
       type: 'text',
