@@ -57,7 +57,14 @@ function handleEvent(event) {
       text: "Appropriate Message for NASA FIRMS will be sent"
     });
   } else if (event.message.text.match("CUsense")) {
-    fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all')
+    fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
+        method: 'POST',
+        headers: {
+          'X-Gravitee-Api-Key': '3d9c7df5-1262-45ad-a311-ff5ae72b4cb8',
+          'Content-Type': 'application/json'
+        },
+        body: '{\"topic\":\"cusensor2/60019440B80B\"}'
+      })
       .then(response => {
         return response.json();
       })
