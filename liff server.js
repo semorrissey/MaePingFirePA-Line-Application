@@ -82,7 +82,7 @@ function handleEvent(event) {
 
         return client.replyMessage(event.replyToken, {
           type: 'text',
-          text: messageResponse;
+          text: messageResponse
         });
       });
   } else if (event.message.text.match("Windy")) {
