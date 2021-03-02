@@ -80,7 +80,7 @@ async function cuSenseFetch(sensor) {
       stationData.province = responseData[sensor].info["province"];
 
       const date = new Date(stationData[0].time.substr(0, 19));
-      const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "% \n \n";
+      const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "%";
 
       return messageResponse;
     });
@@ -109,9 +109,11 @@ async function handleEvent(event) {
     let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: sensorOne + "\n" + sensorTwo
+      text: sensorOne + "\n \n \n" + sensorTwo
     });
   } else if (event.message.text.match("Windy")) {
+
+    let windyData = await windyFetch();
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Appropriate Message for Windy will be sent"
