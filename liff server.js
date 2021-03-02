@@ -40,6 +40,27 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+async function windyFetch() {
+  return await fetch('https://api.windy.com/api/point-forecast/v2', {
+      method: 'POST',
+      body: {
+        'lat': 17.573,
+        'lon': 98.808,
+        'model': 'gfs',
+        'parameters': ["temp", "precip", "wind", "windGust", "ptype", "rh", "pressure", "cosc"],
+        'levels': ["surface"],
+        'key': '8Cq5Sg5sJRRvjtj58rFQurjPUfFaVGCH',
+      }
+    })
+    .then(response => {
+      return response.json();
+    })
+    .then(responseData => {
+      console.log(responseData);
+      return responseData;
+    })
+}
+
 async function cuSenseFetch(sensor) {
   return await fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
       method: 'POST',
@@ -59,7 +80,7 @@ async function cuSenseFetch(sensor) {
       stationData.province = responseData[sensor].info["province"];
 
       const date = new Date(stationData[0].time.substr(0, 19));
-      const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + ", \n" + "PM25 concentration is " + stationData[0]["pm25"] + ", \n" + "PM10 concentration is " + stationData[0]["pm10"] + ", \n" + "The humidity is " + stationData[0].humid;
+      const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "% \n \n";
 
       return messageResponse;
     });
