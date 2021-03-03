@@ -49,9 +49,9 @@ async function windyFetch() {
       body: JSON.stringify({
         lat: 17.573,
         lon: 98.808,
-        model: gfs,
-        parameters: [temp, precip, wind, windGust, ptype, rh, pressure, cosc],
-        levels: [surface],
+        model: "gfs",
+        parameters: ["temp", "precip", "wind", "windGust", "ptype", "rh", "pressure", "cosc"],
+        levels: ["surface"],
         key: '8Cq5Sg5sJRRvjtj58rFQurjPUfFaVGCH'
       })
     })
