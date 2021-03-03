@@ -43,14 +43,17 @@ app.post('/callback', line.middleware(config), (req, res) => {
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
       method: 'POST',
-      body: JSON.stringify({}) {
-        'lat': 17.573,
-        'lon': 98.808,
-        'model': 'gfs',
-        'parameters': ["temp", "precip", "wind", "windGust", "ptype", "rh", "pressure", "cosc"],
-        'levels': ["surface"],
-        'key': '8Cq5Sg5sJRRvjtj58rFQurjPUfFaVGCH'
-      }
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        lat: 17.573,
+        lon: 98.808,
+        model: gfs,
+        parameters: [temp, precip, wind, windGust, ptype, rh, pressure, cosc],
+        levels: [surface],
+        key: '8Cq5Sg5sJRRvjtj58rFQurjPUfFaVGCH'
+      })
     })
     .then(response => {
       return response.json();
