@@ -32,29 +32,29 @@
 <body>
   <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#Home" onclick="changePage('Home');">MaePing FirePA</a>
+      <a class="navbar-brand" href="Home">MaePing FirePA</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#Home" onclick="changePage('Home');">Home</a>
+            <a class="nav-link active" aria-current="page" href="Home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#LINE" onclick="changePage('LINE');">LINE</a>
+            <a class="nav-link" href="LINE">LINE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#Fire Timeline" onclick="changePage('Fire Timeline');">Fire Timeline</a>
+            <a class="nav-link" href="Fire Timeline">Fire Timeline</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Instructional Videos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#Nasa FIRMS" onclick="changePage('Nasa FIRMS');">Nasa FIRMS</a></li>
-              <li><a class="dropdown-item" href="#CuSense" onclick="changePage('CuSense');">CuSense</a></li>
-              <li><a class="dropdown-item" href="#Windy" onclick="changePage('Windy');">Windy</a></li>
+              <li><a class="dropdown-item" href="Nasa FIRMS">Nasa FIRMS</a></li>
+              <li><a class="dropdown-item" href="CuSense">CuSense</a></li>
+              <li><a class="dropdown-item" href="Windy">Windy</a></li>
             </ul>
           </li>
         </ul>
@@ -72,7 +72,7 @@
         <hr class="my-4">
         <p> Navigate to our Fire Timeline Tool here!</p>
         <p class="lead">
-          <a class="btn btn-primary btn-lg" href="#Fire Timeline" role="button" onclick="changePage('Fire Timeline');">Go to Tool</a>
+          <a class="btn btn-primary btn-lg" href="Fire Timeline" role="button">Go to Tool</a>
         </p>
 
         <h1 class="display-4 animated fadeInUp slow">Instructional Videos</h1>
@@ -84,7 +84,7 @@
               <div class="card-body">
                 <h5 class="card-title">Nasa FIRMS</h5>
                 <p class="card-text">We include an instructional video on how to use the Nasa FIRMS tool for fire prevention strategies</p>
-                <a href="#Nasa FIRMS" class="btn btn-primary" onclick="changePage('Nasa FIRMS');">Go to Video</a>
+                <a href="Nasa FIRMS" class="btn btn-primary">Go to Video</a>
               </div>
             </div>
           </div>
@@ -94,7 +94,7 @@
               <div class="card-body">
                 <h5 class="card-title">CuSense</h5>
                 <p class="card-text">We include an instructional video on how to use the CuSense tool for fire prevention strategies</p>
-                <a href="#CuSense" class="btn btn-primary" onclick="changePage('CuSense');">Go to Video</a>
+                <a href="CuSense" class="btn btn-primary">Go to Video</a>
               </div>
             </div>
           </div>
@@ -105,72 +105,12 @@
               <div class="card-body">
                 <h5 class="card-title">Windy</h5>
                 <p class="card-text">We include an instructional video on how to use the Windy tool for fire prevention strategies</p>
-                <a href="#Windy" class="btn btn-primary" onclick="changePage('Windy');">Go to Video</a>
+                <a href="Windy" class="btn btn-primary">Go to Video</a>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-
-
-  <div id="LINE" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <div class="container-sm" id="center">
-      <h1 class="display-1">LINE</h1>
-    </div>
-    <br>
-    <div class="container-sm" id="center">
-      <div style="  margin: auto;
-  width: 50%; display: inline;">
-        <h1 class="display-4"> Add Us On LINE!</h1>
-        <h2 class="display-5"> Search for @968shmpp</h2>
-      </div>
-      <br>
-      <div style="  margin: auto;
-    width: 50%; display: block;">
-        <h6 class="display-6">Scan our QR Code</h6>
-        <img src="https://qr-official.line.me/sid/L/968shmpp.png" class="img-thumbnail">
-      </div>
-    </div>
-    <br>
-    <div class="container">
-      <h2 class="display-2"> User's Agreement</h2>
-      <p> Our app only collects a user's email address after asking for their consent and explaining the purpose of collecting, and complies with all privacy laws applicable to the locations where our app collects, stores, and processes personal
-        data. Email Address are only used for login information to be stored within our database. We use this database to verify that you are a user of LINE so that you may use the application.</p>
-    </div>
-  </div>
-  <div id="Fire Timeline" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <div class="container-sm" id="center">
-      <h1 class="display-1">Fire Hotspot Timeline</h1>
-    </div>
-    <!-- place fire timeline in container div once finished or for testing -->
-    <div class="container-fluid"></div>
-  </div>
-  <div id="Nasa FIRMS" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <h1 class="display-1"> Nasa FIRMS</h1>
-    <p> This is a placeholder video </p>
-    <div class="container-sm" id="center">
-      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/FGgtwEQ-BTk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
-
-  </div>
-  <div id="CuSense" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <h1 class="display-1"> CuSense</h1>
-    <p> This is a placeholder video </p>
-    <div class="container-sm" id="center">
-      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/jxWQZG-QiRE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
-  </div>
-  <div id="Windy" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <h1 class="display-1"> Windy</h1>
-    <p> This is a placeholder video </p>
-    <div class="container-sm" id="center">
-      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/19ofstLMjtM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
     </div>
   </div>
 </body>

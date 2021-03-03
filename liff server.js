@@ -1,6 +1,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
 const fetch = require('node-fetch');
+const page = require("./public/test.js");
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
@@ -26,6 +27,30 @@ app.get('/send-id', function(req, res) {
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/LIFF.html");
+});
+
+app.get("/Home", function(req, res) {
+  res.sendFile(__dirname + "/public/LIFF.html");
+});
+
+app.get("/LINE", function(req, res) {
+  res.sendFile(__dirname + "/public/line.html");
+});
+
+app.get("/Fire%20Timeline", function(req, res) {
+  res.sendFile(__dirname + "/public/firetimeline.html")
+});
+
+app.get("/CuSense", function(req, res) {
+  res.sendFile(__dirname + "/public/cusense.html")
+});
+
+app.get("/Windy", function(req, res) {
+  res.sendFile(__dirname + "/public/windy.html")
+});
+
+app.get("/Nasa%20FIRMS", function(req, res) {
+  res.sendFile(__dirname + "/public/nasafirms.html")
 });
 
 // register a webhook handler with middleware

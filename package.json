@@ -14,6 +14,7 @@
     "fetch": "^1.1.0",
     "fs": "0.0.1-security",
     "http": "0.0.1-security",
+    "jsdom": "^16.4.0",
     "mdb-ui-kit": "^3.3.0",
     "mdbootstrap": "^4.19.2",
     "node-fetch": "^2.6.1"
