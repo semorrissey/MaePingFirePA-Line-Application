@@ -109,7 +109,7 @@ async function cuSenseFetch(sensor) {
       stationData.sensor = responseData[sensor].info["project"];
 
       const date = new Date(stationData[0].time.substr(0, 19));
-      const messageResponse = "Data provided by " + stationData.sensor + " for " + stationData.name + " in " + stationData.province + "\n" + "On " + date.toDateString() + " at " + date.getTime() +
+      const messageResponse = "Data provided by " + stationData.sensor + " for " + stationData.name + " in " + stationData.province + "\n" + "On " + date.toDateString() + " at " + date.getHours() +
         ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "%";
 
       return messageResponse;
