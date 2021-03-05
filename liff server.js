@@ -106,9 +106,11 @@ async function cuSenseFetch(sensor) {
       const stationData = responseData[sensor].data;
       stationData.name = responseData[sensor].info["name"];
       stationData.province = responseData[sensor].info["province"];
+      stationData.sensor = responseData[sensor].info["project"];
 
       const date = new Date(stationData[0].time.substr(0, 19));
-      const messageResponse = "On " + date.toDateString() + ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "%";
+      const messageResponse = "Data provided by " + stationData.sensor + " for " + stationData.name + " in " + stationData.province + "\n" + "On " + date.toDateString() + " at " + date.getTime() +
+        ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "%";
 
       return messageResponse;
     });
@@ -129,27 +131,30 @@ async function handleEvent(event) {
   if (event.message.text.match("NASA FIRMS")) {
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "Appropriate Message for NASA FIRMS will be sent"
+      text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our instructional video on how to use Nasa Firms: \n \n https://maepingfirepa.herokuapp.com/Nasa%20FIRMS"
     });
   } else if (event.message.text.match("CUsense")) {
 
     let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
     let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
-    return client.replyMessage(event.replyToken, {
+    return client.replyMessage(event.replyToken, [{
       type: 'text',
-      text: sensorOne + "\n \n \n" + sensorTwo
-    });
+      text: sensorOne + "\n \n \n" + sensorTwo + "\n \n \n"
+    }, {
+      type: 'text',
+      text: "For more info look at : https://cusense.net/map"
+    }]);
   } else if (event.message.text.match("Windy")) {
 
     let windyData = await windyFetch();
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "Appropriate Message for Windy will be sent"
+      text: "To view our Windy App, please take a look at the following link which includes an instructional video and the app itself: \n \n https://maepingfirepa.herokuapp.com/Windy "
     });
   } else if (event.message.text.match("About Bushfire")) {
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "Appropriate Message for About Bushfire will be sent"
+      text: "Currently, our 'About Bushfire' section is underdevelopment. \n \n \n Please take a look at the following to see instructional videos about wildfires \n \n https://maepingfirepa.herokuapp.com/Windy"
     });
   }
   // use reply API
