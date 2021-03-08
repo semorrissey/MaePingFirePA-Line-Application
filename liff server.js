@@ -5,7 +5,7 @@ const page = require("./public/test.js");
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
-//const wget = require('wget');
+const wget = require('wget');
 
 require('dotenv').config();
 
@@ -66,7 +66,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-/*async function csvDownload() {
+async function csvDownload() {
   var src = 'https://raw.github.com/Fyrd/caniuse/master/data.json';
   var output = '/tmp/data.json';
   var options = {
@@ -83,7 +83,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     console.log("I am downloading!");
   });
   return download;
-} */
+}
 
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
