@@ -4,9 +4,10 @@ const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
-var wget = require('wget');
+const wget = require('wget');
+const
 
-require('dotenv').config();
+  require('dotenv').config();
 
 // create LINE SDK config from env variables
 const config = {
@@ -66,22 +67,8 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 function csvDownload() {
-  var src = 'https://raw.github.com/Fyrd/caniuse/master/data.json';
-  var output = '/tmp/data.json';
-  var options = {
-    proxy: 'http://host:port'
-  };
-  var download = wget.download(src, output, options);
-  download.on('error', function(err) {
-    console.log(err);
-  });
-  download.on('end', function(output) {
-    console.log(output);
-  });
-  download.on('progress', function(progress) {
-    console.log("I am downloading!");
-  });
-  return download;
+  wget('https://raw.github.com/angleman/wgetjs/master/angleman.png');
+  return true;
 }
 
 async function windyFetch() {
