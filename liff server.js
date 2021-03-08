@@ -5,6 +5,7 @@ const page = require("./public/test.js");
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
+const wget = require('wget');
 
 require('dotenv').config();
 
@@ -64,6 +65,25 @@ app.post('/callback', line.middleware(config), (req, res) => {
       res.status(500).end();
     });
 });
+
+async function csvDownload() {
+  var src = 'https://raw.github.com/Fyrd/caniuse/master/data.json';
+  var output = '/tmp/data.json';
+  var options = {
+    proxy: 'http://host:port'
+  };
+  var download = await wget.download(src, output, options);
+  download.on('error', function(err) {
+    console.log(err);
+  });
+  download.on('end', function(output) {
+    console.log(output);
+  });
+  download.on('progress', function(progress) {
+    console.log("I am downloading!");
+  });
+  return download;
+}
 
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
@@ -129,6 +149,7 @@ async function handleEvent(event) {
     text: event.message.text
   };
   if (event.message.text.match("NASA FIRMS")) {
+    let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our instructional video on how to use Nasa Firms: \n \n https://maepingfirepa.herokuapp.com/Nasa%20FIRMS"
