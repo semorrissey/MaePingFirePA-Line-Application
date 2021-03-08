@@ -4,7 +4,7 @@ const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
-const wget = require('wget');
+var wget = require('wget');
 
 require('dotenv').config();
 
