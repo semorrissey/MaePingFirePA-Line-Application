@@ -5,9 +5,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
 const wget = require('wget');
-const
 
-  require('dotenv').config();
+require('dotenv').config();
 
 // create LINE SDK config from env variables
 const config = {
