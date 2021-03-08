@@ -65,13 +65,13 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-async function csvDownload() {
+function csvDownload() {
   var src = 'https://raw.github.com/Fyrd/caniuse/master/data.json';
   var output = '/tmp/data.json';
   var options = {
     proxy: 'http://host:port'
   };
-  var download = await wget.download(src, output, options);
+  var download = wget.download(src, output, options);
   download.on('error', function(err) {
     console.log(err);
   });
