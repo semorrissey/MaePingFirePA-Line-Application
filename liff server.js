@@ -70,7 +70,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 async function csvDownload() {
   const url = 'nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
-  const path = '/public/tmp/' // where to save a file
+  const path = './public/tmp/' // where to save a file
   var options = {
     host: url,
     path: path,
@@ -78,16 +78,6 @@ async function csvDownload() {
       'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ',
     }
   }
-
-  /*callback = function(response) {
-    if (response.statusCode === 200) {
-      var file = fs.createWriteStream(path);
-      response.pipe(file);
-    }
-    request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request
-      request.abort();
-    });
-  };*/
 
   /* Create an empty file where we can save data */
   let file = fs.createWriteStream(path);
