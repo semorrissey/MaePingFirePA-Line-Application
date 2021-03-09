@@ -70,7 +70,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 async function csvDownload() {
   const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
-  const path = './' // where to save a file
+  const path = "/public/tmp/" // where to save a file
 
   const downloadFile = (async (url, path) => {
     const res = await fetch(url, {
