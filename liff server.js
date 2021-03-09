@@ -68,7 +68,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
-function csvDownload() {
+async function csvDownload() {
   const url = 'nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
   const path = '/public/tmp/' // where to save a file
   var options = {
