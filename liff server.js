@@ -7,6 +7,7 @@ const myLiffId = process.env.MY_LIFF_ID;
 //const wget = require('node-wget');
 const https = require("https");
 const fs = require("fs");
+const request = require('request');
 
 require('dotenv').config();
 
@@ -68,24 +69,6 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 function csvDownload() {
-  /*wget({
-      url: 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf',
-      dest: './public/tmp/', // destination path or path with filenname, default is ./
-      timeout: 2000, // duration to wait for request fulfillment in milliseconds, default is 2 seconds
-      header: "Authorization: bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUxMzQzOjM5MDNhMzkzMTU2ZjZkNTBjZWMwN2VmYTg2YThjNmQ5MzIxOWFhZWQ"
-    },
-    function(error, response, body) {
-      if (error) {
-        console.log('--- error:');
-        console.log(error); // error encountered
-      } else {
-        console.log('--- headers:');
-        console.log(response.headers); // response headers
-        console.log('--- body:');
-        console.log(body); // content of package
-      }
-    }
-  );*/
   const url = 'nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
   const path = '/public/tmp/' // where to save a file
   var options = {
@@ -96,7 +79,7 @@ function csvDownload() {
     }
   }
 
-  callback = function(response) {
+  /*callback = function(response) {
     if (response.statusCode === 200) {
       var file = fs.createWriteStream(path);
       response.pipe(file);
@@ -104,11 +87,42 @@ function csvDownload() {
     request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request
       request.abort();
     });
-  };
+  };*/
 
-  https.request(options, callback).end();
-  console.log("I worked!");
-  return true;
+  /* Create an empty file where we can save data */
+  let file = fs.createWriteStream(`file.jpg`);
+
+  /* Using Promises so that we can use the ASYNC AWAIT syntax */
+  await new Promise((resolve, reject) => {
+      let stream = request({
+          /* Here you should specify the exact link to the file you are trying to download */
+          uri: 'https://LINK_TO_THE_FILE',
+          headers: {
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Encoding': 'gzip, deflate, br',
+            'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8,ro;q=0.7,ru;q=0.6,la;q=0.5,pt;q=0.4,de;q=0.3',
+            'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ'
+          },
+          /* GZIP true for most of the websites now, disable it if you don't need it */
+          gzip: false
+        })
+        .pipe(file)
+        .on('finish', () => {
+          console.log(`The file is finished downloading.`);
+          resolve();
+        })
+        .on('error', (error) => {
+          reject(error);
+        })
+    })
+    .catch(error => {
+      console.log(`Something happened: ${error}`);
+    });
+}
+
+https.request(options, callback).end();
+console.log("I worked!");
+return true;
 }
 
 async function windyFetch() {
