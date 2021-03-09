@@ -118,11 +118,8 @@ async function csvDownload() {
     .catch(error => {
       console.log(`Something happened: ${error}`);
     });
-}
-
-https.request(options, callback).end();
-console.log("I worked!");
-return true;
+  console.log("i worked");
+  return true;
 }
 
 async function windyFetch() {
