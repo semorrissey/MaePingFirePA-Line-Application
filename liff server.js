@@ -69,45 +69,22 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 async function csvDownload() {
-  const url = 'nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
-  const path = './public/tmp/' // where to save a file
-  var options = {
-    host: url,
-    path: path,
-    headers: {
-      'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ',
-    }
-  }
+  const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
+  const path = './' // where to save a file
 
-  /* Create an empty file where we can save data */
-  let file = fs.createWriteStream(path + "file.pdf");
-
-  /* Using Promises so that we can use the ASYNC AWAIT syntax */
-  await new Promise((resolve, reject) => {
-      let stream = request({
-          /* Here you should specify the exact link to the file you are trying to download */
-          uri: 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf',
-          headers: {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-            'Accept-Encoding': 'gzip, deflate, br',
-            'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8,ro;q=0.7,ru;q=0.6,la;q=0.5,pt;q=0.4,de;q=0.3',
-            'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ'
-          },
-          /* GZIP true for most of the websites now, disable it if you don't need it */
-          gzip: false
-        })
-        .pipe(file)
-        .on('finish', () => {
-          console.log(`The file is finished downloading.`);
-          resolve();
-        })
-        .on('error', (error) => {
-          reject(error);
-        })
-    })
-    .catch(error => {
-      console.log(`Something happened: ${error}`);
+  const downloadFile = (async (url, path) => {
+    const res = await fetch(url, {
+      headers: {
+        'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ'
+      }
     });
+    const fileStream = fs.createWriteStream(path);
+    await new Promise((resolve, reject) => {
+      res.body.pipe(fileStream);
+      res.body.on("error", reject);
+      fileStream.on("finish", resolve);
+    });
+  });
   console.log("i worked");
   return true;
 }
