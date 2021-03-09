@@ -4,7 +4,9 @@ const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
-const wget = require('node-wget');
+//const wget = require('node-wget');
+const https = require("https");
+const fs = require("fs");
 
 require('dotenv').config();
 
@@ -66,7 +68,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 function csvDownload() {
-  wget({
+  /*wget({
       url: 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf',
       dest: './public/tmp/', // destination path or path with filenname, default is ./
       timeout: 2000, // duration to wait for request fulfillment in milliseconds, default is 2 seconds
@@ -83,7 +85,29 @@ function csvDownload() {
         console.log(body); // content of package
       }
     }
-  );
+  );*/
+  const url = 'nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
+  const path = '/public/tmp/' // where to save a file
+  var options = {
+    host: url,
+    path: path,
+    headers: {
+      'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ',
+    }
+  }
+
+  callback = function(response) {
+    if (response.statusCode === 200) {
+      var file = fs.createWriteStream(path);
+      response.pipe(file);
+    }
+    request.setTimeout(60000, function() { // if after 60s file not downlaoded, we abort a request
+      request.abort();
+    });
+  };
+
+  http.request(options, callback).end();
+  console.log("I worked!");
   return true;
 }
 
