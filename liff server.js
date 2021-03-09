@@ -80,7 +80,7 @@ async function csvDownload() {
   }
 
   /* Create an empty file where we can save data */
-  let file = fs.createWriteStream(path);
+  let file = fs.createWriteStream(path + "file.pdf");
 
   /* Using Promises so that we can use the ASYNC AWAIT syntax */
   await new Promise((resolve, reject) => {
