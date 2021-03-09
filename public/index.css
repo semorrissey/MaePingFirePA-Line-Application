@@ -6,6 +6,36 @@
   display: block;
 }
 
+#map {
+  width: 75%;
+  height: 500px;
+}
+
+.centerr {
+  margin: auto;
+  width: 100%;
+  display: block;
+}
+
+.container {
+padding: 100px;
+}
+
+/*
+div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+*/
+
+
+#windy {
+  width: 75%;
+  height: 500px;
+}
+
 .threeSpread {
   margin: 0 40px 40px 40px
 }
