@@ -67,9 +67,10 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 function csvDownload() {
   wget({
-      url: 'https://raw.github.com/angleman/wgetjs/master/package.json',
-      dest: '/tmp/', // destination path or path with filenname, default is ./
-      timeout: 2000 // duration to wait for request fulfillment in milliseconds, default is 2 seconds
+      url: 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf',
+      dest: './public/tmp/', // destination path or path with filenname, default is ./
+      timeout: 2000, // duration to wait for request fulfillment in milliseconds, default is 2 seconds
+      header: "Authorization: bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUxMzQzOjM5MDNhMzkzMTU2ZjZkNTBjZWMwN2VmYTg2YThjNmQ5MzIxOWFhZWQ"
     },
     function(error, response, body) {
       if (error) {
