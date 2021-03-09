@@ -106,7 +106,7 @@ function csvDownload() {
     });
   };
 
-  http.request(options, callback).end();
+  https.request(options, callback).end();
   console.log("I worked!");
   return true;
 }
