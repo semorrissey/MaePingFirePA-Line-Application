@@ -90,7 +90,7 @@ async function csvDownload() {
   };*/
 
   /* Create an empty file where we can save data */
-  let file = fs.createWriteStream(`file.jpg`);
+  let file = fs.createWriteStream(path);
 
   /* Using Promises so that we can use the ASYNC AWAIT syntax */
   await new Promise((resolve, reject) => {
