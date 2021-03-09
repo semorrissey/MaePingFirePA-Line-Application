@@ -96,7 +96,7 @@ async function csvDownload() {
   await new Promise((resolve, reject) => {
       let stream = request({
           /* Here you should specify the exact link to the file you are trying to download */
-          uri: 'https://LINK_TO_THE_FILE',
+          uri: 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf',
           headers: {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
             'Accept-Encoding': 'gzip, deflate, br',
