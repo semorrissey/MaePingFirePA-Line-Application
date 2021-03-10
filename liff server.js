@@ -71,17 +71,15 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 
 //mongodb connection setup
-const password = process.env.DB_PASSWORD;
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
-const uri = `mongodb+srv://tester:${"NP5qWIzDkP6lK9Tv"}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority`;
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://<tester>:<OZd8gV30qCc8dDZj>@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority";
 const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-let collection = null;
 dbClient.connect(err => {
-  collection = dbClient.db("SiteDatabase").collection("Accounts");
+  const collection = dbClient.db("SiteDatabase").collection("Accounts");
+  //lient.close();
 });
 
 //parsing Nasa information
@@ -122,14 +120,6 @@ function reading() {
 //requests from database
 app.post("/push", bodyParser.json(), function(req, res) {
   console.log(req.body);
-  const dbClient = new MongoClient(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
-  let collection = null;
-  dbClient.connect(err => {
-    collection = dbClient.db("SiteDatabase").collection("Accounts");
-  });
   collection.insertMany(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
   });
