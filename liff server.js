@@ -106,7 +106,7 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
   var payload = [jsonResult];
   fetch("https://maepingfirepa.herokuapp.com/push", {
     method: "POST",
-    body: JSON.stringify(payload),
+    body: payload,
     headers: {
       "Content-Type": "application/json"
     }
