@@ -8,6 +8,7 @@ const myLiffId = process.env.MY_LIFF_ID;
 const https = require("https");
 const fs = require("fs");
 const request = require('request');
+const bodyParser = require("body-parser");
 
 require('dotenv').config();
 
@@ -102,10 +103,18 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
     }
     jsonResult.push(JSON.stringify(json));
   }
-  collection.insertMany(jsonResult);
+  fetch("/push", {
+    method: "POST",
+    body: jsonResult,
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
 });
 //requests from database
-
+app.post("/push", function(req, res) => {
+  collection.insertMany(req.body).then(() => res.sendStatus(200));
+});
 
 
 // fetch from source apis
