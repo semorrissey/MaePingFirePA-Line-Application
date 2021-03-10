@@ -77,8 +77,9 @@ const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+let colletion = null;
 dbClient.connect(err => {
-  const collection = dbClient.db("SiteDatabase").collection("Accounts");
+  collection = dbClient.db("SiteDatabase").collection("Accounts");
   //lient.close();
 });
 
