@@ -103,9 +103,10 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
     }
     jsonResult.push(JSON.stringify(json));
   }
+  var payload = [jsonResult];
   fetch("https://maepingfirepa.herokuapp.com/push", {
     method: "POST",
-    body: JSON.stringify(jsonResult),
+    body: JSON.stringify(payload),
     headers: {
       "Content-Type": "application/json"
     }
