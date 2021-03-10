@@ -125,7 +125,7 @@ function reading() {
 //requests from database
 app.post("/push", bodyParser.json(), function(req, res) {
   console.log(req.body);
-  collection.insertOne(req.body).then(dbresponse => {
+  collection.insertMany(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
   });
 });
