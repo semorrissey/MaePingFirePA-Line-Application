@@ -204,7 +204,7 @@ async function handleEvent(event) {
     let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our instructional video on how to use Nasa Firms: \n \n https://maepingfirepa.herokuapp.com/Fire%20Timeline"
+      text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our webpage to view the tool: \n \n https://maepingfirepa.herokuapp.com/Fire%20Timeline"
     });
   } else if (event.message.text.match("CUsense")) {
 
@@ -222,7 +222,7 @@ async function handleEvent(event) {
     let windyData = await windyFetch();
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "To view our Windy App, please take a look at the following link which includes an instructional video and the app itself: \n \n https://maepingfirepa.herokuapp.com/Windy "
+      text: "To view our Windy App, please take a look at the following link which includes the app itself: \n \n https://maepingfirepa.herokuapp.com/Windy "
     });
   } else if (event.message.text.match("About Bushfire")) {
     return client.replyMessage(event.replyToken, {

@@ -27,6 +27,43 @@
   <link rel='stylesheet' href='/index.css'>
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
+  <!-- Wind API Scripts -->
+  <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+  <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
+
+  <script>
+    const options = {
+      // Required: API key
+      key: "9QSfoEZ65tLoOiqM1Lkvx1t2JCZSvMtT",
+
+      // Put additional console output
+      verbose: true,
+
+      // Optional: Initial state of the map
+      lat: 15.0,
+      lon: 100.0,
+      zoom: 6.5
+    };
+
+    // Initialize Windy API
+    windyInit(options, windyAPI => {
+      // windyAPI is ready, and contain 'map', 'store',
+      // 'picker' and other usefull stuff
+
+      const {
+        map
+      } = windyAPI;
+      // .map is instance of Leaflet map
+
+      L.popup()
+        .setLatLng([15.0, 101.0])
+        .setContent("Welcome to Windy! You can use this window to check the weather and temperature in Thailand.")
+        .openOn(map);
+    });
+  </script>
+
+
+
 </head>
 
 
@@ -63,13 +100,11 @@
     </div>
   </nav>
 
+
+
   <div id="Windy" class=" animated fadeInUp">
     <h1 class="display-1"> Windy</h1>
-    <p> This is a placeholder video </p>
-    <div class="container-sm" id="center">
-      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/19ofstLMjtM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+    <div id="windy" class="centerr"></div>
   </div>
 
 </body>
