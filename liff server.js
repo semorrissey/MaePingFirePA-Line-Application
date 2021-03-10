@@ -87,7 +87,7 @@ dbClient.connect(err => {
 //parsing Nasa information
 
 //reads file into array and converts to JSON
-function reading() {
+async function reading() {
   fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
     if (err) throw err;
     var array = data.toString().split("\n");
@@ -104,7 +104,7 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
       var payload = [json];
-      fetch("https://maepingfirepa.herokuapp.com/push", {
+      await fetch("https://maepingfirepa.herokuapp.com/push", {
         method: "POST",
         body: JSON.stringify(json),
         headers: {
@@ -213,7 +213,7 @@ async function handleEvent(event) {
   };
   if (event.message.text.match("NASA FIRMS")) {
     reading();
-    let test = csvDownload();
+    //let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our webpage to view the tool: \n \n https://maepingfirepa.herokuapp.com/Fire%20Timeline"
