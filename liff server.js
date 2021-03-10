@@ -113,7 +113,7 @@ function reading() {
     var payload = [jsonResult];
     fetch("https://maepingfirepa.herokuapp.com/push", {
       method: "POST",
-      body: temp2,
+      body: JSON.stringify(temp2),
       headers: {
         "Content-Type": "application/json"
       }
