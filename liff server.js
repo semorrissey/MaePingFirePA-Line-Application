@@ -88,14 +88,12 @@ dbClient.connect(err => {
 
 //reads file into array and converts to JSON
 function reading() {
-  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', async function(err, data) {
+  ffs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
     if (err) throw err;
     var array = data.toString().split("\n");
     var jsonKeys = array[0].split(",");
     array.splice(0, 1);
-
     var jsonResult = new Array;
-
     for (i in array) {
       var temp = array[i].split(",");
       var json = {};
@@ -103,21 +101,29 @@ function reading() {
         json[jsonKeys[j]] = temp[j];
       }
       jsonResult.push(JSON.stringify(json));
-      var payload = [json];
-      await fetch("/push ", {
-        method: "POST",
-        body: JSON.stringify(json),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
     }
+    var temp = [{
+      "pepe": 1
+    }, {
+      "pepe": 2
+    }];
+    var temp2 = [temp];
+    console.log(temp);
+    console.log(temp2);
+    var payload = [jsonResult];
+    fetch("https://maepingfirepa.herokuapp.com/push", {
+      method: "POST",
+      body: temp2,
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
   });
 }
 
 
 //requests from database
-app.post("/push", function(req, res) {
+app.post("/push", bodyParser.json(), function(req, res) {
   console.log(req.body);
   collection.insertOne(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
