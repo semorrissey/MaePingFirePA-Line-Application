@@ -74,14 +74,14 @@ app.post('/callback', line.middleware(config), (req, res) => {
 const password = process.env.DB_PASSWORD;
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const uri = `mongodb+srv://admin:${password}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://tester:${NP5qWIzDkP6lK9Tv}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority`;
 const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
 let collection = null;
 dbClient.connect(err => {
-  collection = dbClient.db("FireData").collection("NasaFirmsData");
+  collection = dbClient.db("SiteDatabase").collection("Accounts");
 });
 
 //parsing Nasa information
@@ -103,10 +103,18 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
     }
     jsonResult.push(JSON.stringify(json));
   }
+  var temp = [{
+    "pepe": 1
+  }, {
+    "pepe": 2
+  }];
+  var temp2 = [temp];
+  console.log(temp);
+  console.log(temp2);
   var payload = [jsonResult];
   fetch("https://maepingfirepa.herokuapp.com/push", {
     method: "POST",
-    body: payload,
+    body: temp2,
     headers: {
       "Content-Type": "application/json"
     }
