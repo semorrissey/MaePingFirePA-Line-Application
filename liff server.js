@@ -122,6 +122,14 @@ function reading() {
 //requests from database
 app.post("/push", bodyParser.json(), function(req, res) {
   console.log(req.body);
+  const dbClient = new MongoClient(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+  let collection = null;
+  dbClient.connect(err => {
+    collection = dbClient.db("SiteDatabase").collection("Accounts");
+  });
   collection.insertMany(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
   });
