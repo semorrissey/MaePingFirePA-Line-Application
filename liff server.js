@@ -102,23 +102,17 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
       json[jsonKeys[j]] = temp[j];
     }
     jsonResult.push(JSON.stringify(json));
+    var payload = [json];
+    fetch("https://maepingfirepa.herokuapp.com/push", {
+      method: "POST",
+      body: JSON.stringify(payload),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
   }
-  var temp = [{
-    "pepe": 1
-  }, {
-    "pepe": 2
-  }];
-  var temp2 = [temp];
-  console.log(temp);
-  console.log(temp2);
-  var payload = [jsonResult];
-  fetch("https://maepingfirepa.herokuapp.com/push", {
-    method: "POST",
-    body: JSON.stringify(temp2),
-    headers: {
-      "Content-Type": "application/json"
-    }
-  });
+
+
 });
 //requests from database
 app.post("/push", function(req, res) {
