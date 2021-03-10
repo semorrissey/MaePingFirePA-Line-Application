@@ -107,13 +107,10 @@ function reading() {
     }, {
       "pepe": 2
     }];
-    var temp2 = [temp];
-    console.log(temp);
-    console.log(temp2);
-    var payload = [jsonResult];
+
     fetch("https://maepingfirepa.herokuapp.com/push", {
       method: "POST",
-      body: JSON.stringify(temp2),
+      body: JSON.stringify(temp),
       headers: {
         "Content-Type": "application/json"
       }
