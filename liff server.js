@@ -86,7 +86,6 @@ dbClient.connect(err => {
 //parsing Nasa information
 
 //reads file into array and converts to JSON
-var fs = require('fs');
 fs.readFile('./public/temp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
   if (err) throw err;
   var array = data.toString().split("\n");
