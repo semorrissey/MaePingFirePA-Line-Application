@@ -204,7 +204,7 @@ async function handleEvent(event) {
     let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
-      text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our instructional video on how to use Nasa Firms: \n \n https://maepingfirepa.herokuapp.com/Nasa%20FIRMS"
+      text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our instructional video on how to use Nasa Firms: \n \n https://maepingfirepa.herokuapp.com/Fire%20Timeline"
     });
   } else if (event.message.text.match("CUsense")) {
 
