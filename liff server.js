@@ -88,7 +88,7 @@ dbClient.connect(err => {
 
 //reads file into array and converts to JSON
 function reading() {
-  ffs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
+  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
     if (err) throw err;
     var array = data.toString().split("\n");
     var jsonKeys = array[0].split(",");
