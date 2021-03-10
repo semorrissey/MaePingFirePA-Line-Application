@@ -122,6 +122,7 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
 });
 //requests from database
 app.post("/push", function(req, res) {
+  console.log(req.body);
   collection.insertMany(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
   });
