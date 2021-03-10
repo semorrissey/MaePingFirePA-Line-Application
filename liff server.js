@@ -92,7 +92,7 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
   var jsonKeys = array[0].split(",");
   array.splice(0, 1);
 
-  var jsonResult = new JSON;
+  var jsonResult = new Array;
 
   for (i in array) {
     var temp = array[i].split(",");
