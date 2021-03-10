@@ -89,11 +89,37 @@ dbClient.connect(err => {
 fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
   if (err) throw err;
   var array = data.toString().split("\n");
+  var jsonKeys = array[0].split(",");
+  array.splice(0, 1);
+
+  var jsonResult = new Array();
+
   for (i in array) {
-    console.log(array[i]);
+    var temp = array[i].split(",");
+    var json = {
+      jsonKeys[0]: temp[0],
+      jsonKeys[1]: temp[1],
+      jsonKeys[2]: temp[2],
+      jsonKeys[3]: temp[3],
+      jsonKeys[4]: temp[4],
+      jsonKeys[5]: temp[5],
+      jsonKeys[6]: temp[6],
+      jsonKeys[7]: temp[7],
+      jsonKeys[8]: temp[8],
+      jsonKeys[9]: temp[9],
+      jsonKeys[10]: temp[10],
+      jsonKeys[11]: temp[11],
+      jsonKeys[12]: temp[12]
+    }
+    jsonResult.push(JSON.stringify(json));
   }
+  collection.insertMany(jsonResult);
 });
 //requests from database
+
+
+
+// fetch from source apis
 
 async function csvDownload() {
   const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
