@@ -85,7 +85,7 @@ dbClient.connect(err => {
 });
 
 //parsing Nasa information
-/*
+
 //reads file into array and converts to JSON
 fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
   if (err) throw err;
@@ -105,14 +105,19 @@ fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021
   }
   fetch("/push", {
     method: "POST",
-    body: jsonResult,
+    body: JSON.stringify(jsonResult),
+    headers: {
+      "Content-Type": "application/json"
+    }
   });
 });
 //requests from database
 app.post("/push", function(req, res) {
-  collection.insertMany(req.body).then(() => res.sendStatus(200));
+  collection.insertMany(req.body).then(dbresponse => {
+    res.json(dbresponse.ops[0]);
+  });
 });
-*/
+
 
 // fetch from source apis
 
