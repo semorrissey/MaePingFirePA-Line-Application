@@ -87,37 +87,13 @@ dbClient.connect(err => {
 //parsing Nasa information
 
 //reads file into array and converts to JSON
-fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
-  if (err) throw err;
-  var array = data.toString().split("\n");
-  var jsonKeys = array[0].split(",");
-  array.splice(0, 1);
-
-  var jsonResult = new Array;
-
-  for (i in array) {
-    var temp = array[i].split(",");
-    var json = {};
-    for (j in temp) {
-      json[jsonKeys[j]] = temp[j];
-    }
-    jsonResult.push(JSON.stringify(json));
-    var payload = [json];
-    fetch("https://maepingfirepa.herokuapp.com/push", {
-      method: "POST",
-      body: JSON.stringify(payload),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  }
 
 
-});
+
 //requests from database
 app.post("/push", function(req, res) {
   console.log(req.body);
-  collection.insertMany(req.body).then(dbresponse => {
+  collection.insertOne(req.body).then(dbresponse => {
     res.json(dbresponse.ops[0]);
   });
 });
