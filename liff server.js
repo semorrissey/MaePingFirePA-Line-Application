@@ -104,7 +104,7 @@ async function reading() {
       }
       jsonResult.push(JSON.stringify(json));
       var payload = [json];
-      await fetch("https://maepingfirepa.herokuapp.com/push", {
+      await fetch("/push ", {
         method: "POST",
         body: JSON.stringify(json),
         headers: {
