@@ -68,6 +68,34 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+
+//mongodb connection setup
+const password = process.env.DB_PASSWORD;
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
+const uri = `mongodb+srv://admin:${password}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
+const dbClient = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+let collection = null;
+dbClient.connect(err => {
+  collection = dbClient.db("FireData").collection("NasaFirmsData");
+});
+
+//parsing Nasa information
+
+//reads file into array and converts to JSON
+var fs = require('fs');
+fs.readFile('./public/temp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
+  if (err) throw err;
+  var array = data.toString().split("\n");
+  for (i in array) {
+    console.log(array[i]);
+  }
+});
+//requests from database
+
 async function csvDownload() {
   const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
   const path = "/public/tmp/" // where to save a file
