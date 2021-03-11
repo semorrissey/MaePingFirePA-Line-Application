@@ -77,12 +77,6 @@ const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-let colletion = null;
-dbClient.connect(err => {
-  collection = dbClient.db("SiteDatabase").collection("Accounts");
-  //dbClient.close();
-});
-
 //parsing Nasa information
 
 //reads file into array and converts to JSON
@@ -119,12 +113,25 @@ function reading() {
 
 
 //requests from database
+
+async function addDocs(info) {
+  try {
+    await dbClient.connect();
+
+    const collection = dbClient.db("SiteDatabase").collection("Accounts");
+
+    const options = {
+      ordered: true
+    };
+
+    const result = await collection.insertMany(info, options);
+    console.log('${result.insertedCount} documents were inserted');
+  } finally {
+    await dbClient.close();
+  }
+}
 app.post("/push", bodyParser.json(), function(req, res) {
-  dbClient.once('open', function(err) {
-    collection.insertMany(req.body).then(dbresponse => {
-      res.json(dbresponse.ops[0]);
-    });
-  })
+  addDocs(req.body).catch(console.dir);
 });
 
 
