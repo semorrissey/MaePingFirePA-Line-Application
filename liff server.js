@@ -90,9 +90,9 @@ const dbClient = new MongoClient(uri, {
 
 //reads file into array and converts to JSON
 function reading() {
-  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data) {
+  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', function(err, data.toDateString()) {
     if (err) throw err;
-    var array = data.toString().split("\n");
+    var array = data.split("\n");
     var jsonKeys = array[0].split(",");
     array.splice(0, 1);
     var jsonResult = new Array;
