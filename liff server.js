@@ -120,10 +120,11 @@ function reading() {
 
 //requests from database
 app.post("/push", bodyParser.json(), function(req, res) {
-  console.log(req.body);
-  collection.insertMany(req.body).then(dbresponse => {
-    res.json(dbresponse.ops[0]);
-  });
+  dbClient.once('open', function(err) {
+    collection.insertMany(req.body).then(dbresponse => {
+      res.json(dbresponse.ops[0]);
+    });
+  })
 });
 
 
