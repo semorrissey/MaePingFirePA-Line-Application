@@ -72,11 +72,13 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 //mongodb connection setup
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority";
+const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority`;
+
 const dbClient = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => console.log('MongoDB connected...'))
+  .catch(err => console.log(err));
 //parsing Nasa information
 
 //reads file into array and converts to JSON
