@@ -22,12 +22,13 @@ const config = {
 const client = new line.Client(config);
 
 app.use(express.static('public'));
-app.use(express.json({
-  limit: '25mb'
+app.use(bodyParser.json({
+  limit: '50mb'
 }));
-/*app.use(express.urlencoded({
-  limit: '25mb'
-}));*/
+app.use(bodyParser.urlencoded({
+  limit: '50mb',
+  extended: true
+}));
 
 
 app.get('/send-id', function(req, res) {
