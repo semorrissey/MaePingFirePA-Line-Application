@@ -80,7 +80,7 @@ const dbClient = new MongoClient(uri, {
 let colletion = null;
 dbClient.connect(err => {
   collection = dbClient.db("SiteDatabase").collection("Accounts");
-  //lient.close();
+  //dbClient.close();
 });
 
 //parsing Nasa information
