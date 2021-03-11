@@ -72,7 +72,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 //mongodb connection setup
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://<tester>:<OZd8gV30qCc8dDZj>@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority";
+const uri = "mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority";
 const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
