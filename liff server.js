@@ -72,7 +72,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 //mongodb connection setup
 const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/SiteDatabase?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
 const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -95,15 +95,9 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
     }
-    var temp = [{
-      "pepe": 1
-    }, {
-      "pepe": 2
-    }];
-
     fetch("https://maepingfirepa.herokuapp.com/push", {
       method: "POST",
-      body: JSON.stringify(temp),
+      body: JSON.stringify(jsonResult),
       headers: {
         "Content-Type": "application/json"
       }
@@ -119,7 +113,7 @@ async function addDocs(info) {
     await dbClient.connect().then(() => console.log('MongoDB connected...'))
       .catch(err => console.log(err));;
 
-    const collection = dbClient.db("SiteDatabase").collection("Accounts");
+    const collection = dbClient.db("FireData").collection("NasaFirmsData");
 
     const options = {
       ordered: true
