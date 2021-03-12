@@ -1,0 +1,32 @@
+{
+  "name": "echo-bot",
+  "version": "0.0.0",
+  "description": "An example LINE bot just to echo messages",
+  "main": "liff server.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "dependencies": {
+    "@line/bot-sdk": "^6.8.4",
+    "@line/liff": "^2.8.0",
+    "aws-sdk": "^2.860.0",
+    "body-parser": "^1.19.0",
+    "child_process": "^1.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.16.3",
+    "fetch": "^1.1.0",
+    "fs": "0.0.1-security",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "jsdom": "^16.4.0",
+    "mdb-ui-kit": "^3.3.0",
+    "mdbootstrap": "^4.19.2",
+    "mongodb": "^3.6.4",
+    "node-fetch": "^2.6.1",
+    "node-wget": "^0.4.3",
+    "request": "^2.88.2",
+    "util": "^0.12.3",
+    "uuid": "^8.3.2",
+    "wget": "0.0.1"
+  }
+}
