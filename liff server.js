@@ -206,7 +206,7 @@ async function cuSenseFetch(sensor) {
     });
 }
 
-app.get("/recieve", function(req, res) {
+app.get("/recieve", async function(req, res) {
   let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
   let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
   res.json(sensorOne + "\n \n \n" + sensorTwo + "\n \n \n");
