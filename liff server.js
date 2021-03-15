@@ -22,7 +22,16 @@ const config = {
 const client = new line.Client(config);
 
 app.use(express.static('public'));
-
+app.use(bodyParser.json({
+  limit: '200mb'
+}));
+app.use(bodyParser.urlencoded({
+  limit: '200mb',
+  extended: true
+}));
+app.use(bodyParser.text({
+  limit: '200mb'
+}));
 
 app.get('/send-id', function(req, res) {
   res.json({
@@ -99,14 +108,21 @@ function reading() {
       for (l = 0; l < 100; l++) {
         payload.push(temp[l]);
       }
-      fetch("https://maepingfirepa.herokuapp.com/push", {
+      /*fetch("https://maepingfirepa.herokuapp.com/push", {
         method: "POST",
         body: JSON.stringify(payload),
         headers: {
           "Content-Type": "application/json"
         }
-      });
+      });*/
     }
+    fetch("https://maepingfirepa.herokuapp.com/push", {
+      method: "POST",
+      body: JSON.stringify(jsonResult),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
   });
 }
 
@@ -131,7 +147,7 @@ async function addDocs(info) {
   }
 }
 app.post("/push", bodyParser.json(), function(req, res) {
-  addDocs(req.body).catch(console.dir);
+  addDocs(JSON.parse(req.body)).catch(console.dir);
 });
 
 
