@@ -8,7 +8,8 @@
      })
      .then(function(data) {
        console.log(data);
-       var node = document.createTextNode(data);
+       var formattedString = data.split(",").join("\n");
+       var node = document.createTextNode(formattedString);
        document.getElementById("databox").appendChild(node);
      });
 
