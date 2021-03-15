@@ -93,10 +93,10 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
     }
-    for (k = 0; k < jsonResult.length; k += 1000) {
+    for (k = 0; k < jsonResult.length; k += 500) {
       var payload = new Array;
-      var temp = jsonResult.slice(k, k + 1000);
-      for (l = 0; l < 1000; l++) {
+      var temp = jsonResult.slice(k, k + 500);
+      for (l = 0; l < 500; l++) {
         payload.push(temp[l]);
       }
       fetch("https://maepingfirepa.herokuapp.com/push", {
