@@ -9,7 +9,7 @@
      .then(function(data) {
        console.log(data);
        var formattedString = data.split(",").join("<br>");
-       document.getElementById("databox").innerHTML = formattedStringl
+       document.getElementById("databox").innerHTML = formattedString;
      });
 
  }
