@@ -93,10 +93,10 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
     }
-    for (k = 0; k < jsonResult.length; k += 10) {
+    for (k = 0; k < jsonResult.length; k += 1000) {
       var payload = new Array;
-      var temp = jsonResult.slice(k, k + 10);
-      for (l = 0; l < 10; l++) {
+      var temp = jsonResult.slice(k, k + 1000);
+      for (l = 0; l < 1000; l++) {
         payload.push(temp[l]);
       }
       fetch("https://maepingfirepa.herokuapp.com/push", {
@@ -124,8 +124,8 @@ async function addDocs(info) {
       ordered: true
     };
 
-    const result = await collection.insertMany(info, options);
-    console.log('${result.insertedCount} documents were inserted');
+    const result = await collection.insertMany(info);
+    console.log(result.insertedCount + 'documents were inserted');
   } finally {
     await dbClient.close();
   }
