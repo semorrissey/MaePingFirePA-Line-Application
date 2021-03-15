@@ -22,7 +22,7 @@ const config = {
 const client = new line.Client(config);
 
 app.use(express.static('public'));
-app.use(bodyParser.json({
+/*app.use(bodyParser.json({
   limit: '200mb'
 }));
 app.use(bodyParser.urlencoded({
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.text({
   limit: '200mb'
-}));
+}));*/
 
 app.get('/send-id', function(req, res) {
   res.json({
@@ -116,13 +116,13 @@ function reading() {
         }
       });*/
     }
-    fetch("https://maepingfirepa.herokuapp.com/push", {
+    /*fetch("https://maepingfirepa.herokuapp.com/push", {
       method: "POST",
       body: JSON.stringify(jsonResult),
       headers: {
         "Content-Type": "application/json"
       }
-    });
+    });*/
   });
 }
 
