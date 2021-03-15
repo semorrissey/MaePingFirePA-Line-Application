@@ -8,7 +8,7 @@
      })
      .then(function(data) {
        console.log(data);
-       dataString = dataString + data;
+       document.getElementById("databox").innerHTML = data;
      });
-   document.getElementById("databox").value = dataString;
+
  }
