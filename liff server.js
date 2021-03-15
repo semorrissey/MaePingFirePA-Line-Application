@@ -93,9 +93,9 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
     }
-    for (k = 0; k < jsonResult.length; k += 500) {
+    for (k = 0; k < jsonResult.length; k += 100) {
       var payload = new Array;
-      var temp = jsonResult.slice(k, k + 500);
+      var temp = jsonResult.slice(k, k + 100);
       for (l = 0; l < 100; l++) {
         payload.push(temp[l]);
       }
