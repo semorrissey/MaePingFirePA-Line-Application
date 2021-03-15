@@ -96,7 +96,7 @@ function reading() {
     for (k = 0; k < jsonResult.length; k += 500) {
       var payload = new Array;
       var temp = jsonResult.slice(k, k + 500);
-      for (l = 0; l < 500; l++) {
+      for (l = 0; l < 100; l++) {
         payload.push(temp[l]);
       }
       fetch("https://maepingfirepa.herokuapp.com/push", {
