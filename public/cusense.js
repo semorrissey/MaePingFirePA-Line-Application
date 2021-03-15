@@ -7,7 +7,8 @@
        return response.json();
      })
      .then(function(data) {
-       dataString = data;
+       console.log(data);
+       dataString = dataString + data;
      });
    document.getElementById("databox").value = dataString;
  }
