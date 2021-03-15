@@ -206,6 +206,12 @@ async function cuSenseFetch(sensor) {
     });
 }
 
+app.get("/recieve", function(req, res) {
+  let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
+  let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
+  res.json(sensorOne + "\n \n \n" + sensorTwo + "\n \n \n");
+});
+
 // event handler
 async function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {

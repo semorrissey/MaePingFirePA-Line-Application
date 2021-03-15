@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MaePing National Park Personal Assistant</title>
-
+  <link rel="shortcut icon" type="image/jpg" href="https://img.icons8.com/emoji/48/000000/fire.png" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Google Fonts -->
@@ -23,7 +23,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-  <link rel='stylesheet' href='/index.css'>
+  <link rel='stylesheet' type="text/css" href='/index.css'>
   <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
 
@@ -31,82 +31,79 @@
 </head>
 
 <body>
-  <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="Home">MaePing FirePA</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="LINE">LINE</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Fire Timeline">Fire Timeline</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Instructional Videos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="Nasa FIRMS">Nasa FIRMS</a></li>
-              <li><a class="dropdown-item" href="CuSense">CuSense</a></li>
-              <li><a class="dropdown-item" href="Windy">Windy</a></li>
-            </ul>
-          </li>
-        </ul>
+  <div class="container">
+    <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a id="link" class="navbar-brand" href="Home">MaePing FirePA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="link" class="nav-link active" aria-current="page" href="Home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="LINE">About LINE Official Account</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Fire Timeline"> Nasa FIRMS Fire Timeline Tool</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="CuSense">CuSense Data Tool</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Windy">Windy Map Tool</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
+    </nav>
+  </div>
 
   <div id="Home" class=" animated fadeInUp">
 
+    <div class="container animated fadeInUp slow" id="jumbo">
+      <div class="jumbotron animated fadeInUp">
+        <div class="container" style="display:block;">
+          <h1 class="display-4">Welcome!</h1>
+          <p class="lead">This is an Application to aid Mae Ping National Park Locals with Fire Prevention.</p>
+          <hr class="my-4">
+          <p class="lead">
+            <a class="btn btn-primary btn-lg" href="LINE" role="button">Add Us On LINE</a>
+          </p>
+          <h1 class="display-4 animated fadeInUp slow">Personal Assistant Tools</h1>
 
-    <div class="jumbotron animated fadeInUp">
-      <div class="container" style="display:block;">
-        <h1 class="display-4">Welcome!</h1>
-        <p class="lead">This is an Application to aid Mae Ping National Park Locals with Fire Prevention.</p>
-        <hr class="my-4">
-        <p> Navigate to our Fire Timeline Tool here!</p>
-        <p class="lead">
-          <a class="btn btn-primary btn-lg" href="Fire Timeline" role="button">Go to Tool</a>
-        </p>
-
-        <h1 class="display-4 animated fadeInUp slow">Instructional Videos</h1>
-
-        <div class="row">
-          <div class="col-lg-3 mb-3 animated fadeInUp slow">
-            <div class="card" style="width: 16rem;">
-              <img class="card-img-top" src="https://www.x20.org/wp-content/uploads/2015/01/NASA-logo.png" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Nasa FIRMS</h5>
-                <p class="card-text">We include an instructional video on how to use the Nasa FIRMS tool for fire prevention strategies</p>
-                <a href="Nasa FIRMS" class="btn btn-primary">Go to Video</a>
+          <div class="row">
+            <div class="col-lg-4 mb-3 animated fadeInUp slow">
+              <div class="card" style="width: 16rem;">
+                <img class="card-img-top" src="https://www.x20.org/wp-content/uploads/2015/01/NASA-logo.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Nasa FIRMS Fire Tool</h5>
+                  <p class="card-text">View our Nasa FIRMS Fire Timeline tool here!</p>
+                  <a href="Fire Timeline" class="btn btn-primary">Go to Tool</a>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3 mb-3 animated fadeInUp slow">
-            <div class="card" style="width: 16rem; ">
-              <img class="card-img-top" src="https://cusense.net/portal/themes/assets/CUSENSE_LOGO2.png" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">CuSense</h5>
-                <p class="card-text">We include an instructional video on how to use the CuSense tool for fire prevention strategies</p>
-                <a href="CuSense" class="btn btn-primary">Go to Video</a>
+            <div class="col-lg-4 mb-3 animated fadeInUp slow">
+              <div class="card" style="width: 16rem; ">
+                <img class="card-img-top" src="https://cusense.net/portal/themes/assets/CUSENSE_LOGO2.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">CuSense</h5>
+                  <p class="card-text">View our CuSense Data Provider here!</p>
+                  <a href="CuSense" class="btn btn-primary">Go to Tool</a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col-lg-3 mb-3 animated fadeInUp slow">
-            <div class="card" style="width: 16rem; ">
-              <img class="card-img-top" src="https://d2kwt25mffo49c.cloudfront.net/images/review/windy-thumb.webp" alt="Card image cap">
-              <div class="card-body">
-                <h5 class="card-title">Windy</h5>
-                <p class="card-text">We include an instructional video on how to use the Windy tool for fire prevention strategies</p>
-                <a href="Windy" class="btn btn-primary">Go to Video</a>
+            <div class="col-lg-4 mb-3 animated fadeInUp slow">
+              <div class="card" style="width: 16rem; ">
+                <img class="card-img-top" src="https://d2kwt25mffo49c.cloudfront.net/images/review/windy-thumb.webp" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Windy</h5>
+                  <p class="card-text">View our interactive Windy.com tool here!</p>
+                  <a href="Windy" class="btn btn-primary">Go to Tool</a>
+                </div>
               </div>
             </div>
           </div>
