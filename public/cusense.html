@@ -31,7 +31,7 @@
 
 <body>
   <div class="container">
-    <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="mdb-navbar navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <a id="link" class="navbar-brand" href="Home">MaePing FirePA</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,13 +46,13 @@
               <a id="link" class="nav-link" href="LINE">About LINE Official Account</a>
             </li>
             <li class="nav-item">
-              <a id="link" class="nav-link" href="Fire Timeline"> Nasa FIRMS Fire Timeline Tool</a>
+              <a id="link" class="nav-link" href="Fire Timeline"> Nasa FIRMS</a>
             </li>
             <li class="nav-item">
-              <a id="link" class="nav-link" href="CuSense">CuSense Data Tool</a>
+              <a id="link" class="nav-link" href="CuSense">CuSense</a>
             </li>
             <li class="nav-item">
-              <a id="link" class="nav-link" href="Windy">Windy Map Tool</a>
+              <a id="link" class="nav-link" href="Windy">Windy</a>
             </li>
           </ul>
         </div>
@@ -63,10 +63,17 @@
   <div id="CuSense" class=" animated fadeInUp">
     <div class="container animated fadeInUp slow" id="jumbo">
       <div class="jumbotron animated fadeInUp">
-        <h3 class="display-4"> CuSense</h3>
-        <h4 class="display-5"> Below is the current information provided by CuSense's sensors in Mae Ping National Park</h4>
-        <button type="button" class="btn btn-success" onclick="getData();">Click here to View Latest Data</button>
+        <h3 class="display-4">CuSense</h3>
+        <h4 class="display-5">Below is the current information provided by CuSense's sensors in Mae Ping National Park</h4>
+        <button type="button" class="btn btn-danger" onclick="getData();">Click here to View Latest Data</button>
+        <br>
+        <br>
         <div class="container-sm">
+          <div id="progContainer" class="progress">
+            <div id="progBar" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+          </div>
+          <br>
+          <br>
           <p id="databox"></p>
         </div>
       </div>
