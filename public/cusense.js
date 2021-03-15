@@ -8,8 +8,8 @@
      })
      .then(function(data) {
        console.log(data);
-
-       document.getElementById("databox").textContent = data;
+       var node = document.createTextNode(data);
+       document.getElementById("databox").appendChild(node);
      });
 
  }
