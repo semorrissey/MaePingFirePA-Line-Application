@@ -54,10 +54,6 @@ app.get("/Windy", function(req, res) {
   res.sendFile(__dirname + "/public/windy.html")
 });
 
-app.get("/Nasa%20FIRMS", function(req, res) {
-  res.sendFile(__dirname + "/public/nasafirms.html")
-});
-
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -97,13 +93,20 @@ function reading() {
       }
       jsonResult.push(JSON.stringify(json));
     }
-    fetch("https://maepingfirepa.herokuapp.com/push", {
-      method: "POST",
-      body: JSON.stringify(jsonResult),
-      headers: {
-        "Content-Type": "application/json"
+    for (k = 0; k < jsonResult.length; k += 10) {
+      var payload = new Array;
+      var temp = jsonResult.slice(k, k + 10);
+      for (l = 0; l < 10; l++) {
+        payload.push(temp[l]);
       }
-    });
+      fetch("https://maepingfirepa.herokuapp.com/push", {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+    }
   });
 }
 
