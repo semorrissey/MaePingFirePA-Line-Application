@@ -22,16 +22,6 @@ const config = {
 const client = new line.Client(config);
 
 app.use(express.static('public'));
-/*app.use(bodyParser.json({
-  limit: '200mb'
-}));
-app.use(bodyParser.urlencoded({
-  limit: '200mb',
-  extended: true
-}));
-app.use(bodyParser.text({
-  limit: '200mb'
-}));*/
 
 app.get('/send-id', function(req, res) {
   res.json({
@@ -84,96 +74,6 @@ const dbClient = new MongoClient(uri, {
   useUnifiedTopology: true
 });
 //parsing Nasa information
-
-//reads file into array and converts to JSON
-function reading() {
-  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', 'utf8', function read(err, data) {
-    if (err) throw err;
-    const info = data.toString();
-    var array = info.split("\n");
-    var jsonKeys = array[0].split(",");
-    array.splice(0, 1);
-    var jsonResult = new Array;
-    for (i in array) {
-      var temp = array[i].split(",");
-      var json = {};
-      for (j in temp) {
-        json[jsonKeys[j]] = temp[j];
-      }
-      jsonResult.push(JSON.stringify(json));
-    }
-    for (k = 0; k < jsonResult.length; k += 100) {
-      var payload = new Array;
-      var temp = jsonResult.slice(k, k + 100);
-      for (l = 0; l < 100; l++) {
-        payload.push(temp[l]);
-      }
-      /*fetch("https://maepingfirepa.herokuapp.com/push", {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });*/
-    }
-    /*fetch("https://maepingfirepa.herokuapp.com/push", {
-      method: "POST",
-      body: JSON.stringify(jsonResult),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });*/
-  });
-}
-
-
-//requests from database
-
-async function addDocs(info) {
-  try {
-    await dbClient.connect().then(() => console.log('MongoDB connected...'))
-      .catch(err => console.log(err));;
-
-    const collection = dbClient.db("FireData").collection("NasaFirmsData");
-
-    const options = {
-      ordered: true
-    };
-
-    const result = await collection.insertMany(info);
-    console.log(result.insertedCount + 'documents were inserted');
-  } finally {
-    await dbClient.close();
-  }
-}
-app.post("/push", bodyParser.json(), function(req, res) {
-  addDocs(JSON.parse(req.body)).catch(console.dir);
-});
-
-
-// fetch from source apis
-
-async function csvDownload() {
-  const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
-  const path = "/public/tmp/" // where to save a file
-
-  const downloadFile = (async (url, path) => {
-    const res = await fetch(url, {
-      headers: {
-        'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ'
-      }
-    });
-    const fileStream = fs.createWriteStream(path);
-    await new Promise((resolve, reject) => {
-      res.body.pipe(fileStream);
-      res.body.on("error", reject);
-      fileStream.on("finish", resolve);
-    });
-  });
-  console.log("i worked");
-  return true;
-}
-
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
       method: 'POST',
@@ -244,7 +144,6 @@ async function handleEvent(event) {
     text: event.message.text
   };
   if (event.message.text.match("NASA FIRMS")) {
-    reading();
     //let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
