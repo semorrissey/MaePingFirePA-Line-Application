@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>MaePing National Park Personal Assistant</title>
   <link rel="shortcut icon" type="image/jpg" href="https://img.icons8.com/emoji/48/000000/fire.png" />
   <!-- Font Awesome -->
@@ -31,6 +31,12 @@
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
   <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
 
+  <style>
+    #windy {
+      height: 500px;
+    }
+  </style>
+
   <script>
     const options = {
       // Required: API key
@@ -40,9 +46,9 @@
       verbose: true,
 
       // Optional: Initial state of the map
-      lat: 15.0,
-      lon: 100.0,
-      zoom: 6.5
+      lat: 17.5960,
+      lon: 98.8056,
+      zoom: 8
     };
 
     // Initialize Windy API
@@ -56,7 +62,7 @@
       // .map is instance of Leaflet map
 
       L.popup()
-        .setLatLng([15.0, 101.0])
+        .setLatLng([17.5960, 98.8056])
         .setContent("Welcome to Windy! You can use this window to check the weather and temperature in Thailand.")
         .openOn(map);
     });
@@ -100,19 +106,25 @@
 
 
 
-  <div id="Windy" class=" animated fadeInUp">
+  <div class=" animated fadeInUp">
     <div class="container animated fadeInUp slow" id="jumbo">
       <div class="jumbotron animated fadeInUp">
         <h3 class="display-4"> Windy.com Map Tool</h3>
         <div id="windy" class="center"></div>
         <br>
         <div class="container-sm">
-          <h4 class="display-4">Directions</h4>
-          <ol>
-            <li>Use your mouse (On Web) or Finger (On Mobile) to move around the map</li>
-            <li>Use the button in the top right hand corner to change Map Types</li>
-            <li>Click the play button in the bottom left to play and pause the timeline</li>
-          </ol>
+          <p>
+          You can use this map to look at the temperature and wind speed in and around Thailand. Use the button in the top
+          right hand corner to change Map Types. Click the play button in the bottom left to play and pause the timeline
+          <br><br>
+          If you would like to view more information you can click on the Windy icon that is located at the top of the map.
+          This will take you to the official Windy website where you can access information on air quality, rain and thunder, clouds, waves, humidity, PM2.5,
+          visibility, and ozone.
+          <br><br>
+          ท่านสามารถใช้แผนที่นี้ในการตรวจสอบอุณหภูมิเเละความเร็วลมรอบๆประเทศไทยได้
+          หากท่านต้องการทราบข้อมูลเพิ่มเติม ท่านสามารถกดที่เครื่องหมายวินดี้ที่อยู่ข้างบนแผนที่
+          ท่านจะเข้าสู่หน้าเว็บไซต์ของวินดี้เเละสามารถทราบคุณภาพอากาศ ฝนเเละพายุ การเคลื่อนที่ของกลุ่มเมฆ คลื่นทะเล ความชื้น ค่าฝุ่นPM2.5 ความสามารถในการมองเห็น เเละ โอโซน
+          </p>
 
         </div>
       </div>

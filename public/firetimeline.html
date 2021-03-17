@@ -55,18 +55,18 @@
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
         center: {
-          lat: 15.0,
-          lng: 100.0
+          lat: 17.5960,
+          lng: 98.8056
         },
-        zoom: 7,
+        zoom: 8,
       });
 
       const icons = {
         day: {
-          icon: "dayfire.png",
+          icon: "images/dayfire.png",
         },
         night: {
-          icon: "nightfire.png",
+          icon: "images/nightfire.png",
         },
       };
 
@@ -75,9 +75,9 @@
             lat: 15.3636,
             lng: 100.18719
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:48",
-          dayOrNight: "Day or Night: D",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:48",
+          dayOrNight: "D",
           type: "day",
         },
         {
@@ -85,9 +85,9 @@
             lat: 16.97671,
             lng: 97.2366
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:54",
-          dayOrNight: "Day or Night: N",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:54",
+          dayOrNight: "N",
           type: "night",
         },
         {
@@ -95,9 +95,9 @@
             lat: 17.25048,
             lng: 98.51827
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:54",
-          dayOrNight: "Day or Night: D",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:54",
+          dayOrNight: "D",
           type: "day",
         },
         {
@@ -187,14 +187,27 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3KYwKVRO-jV0NFiGHlTc5qXuKlO9OT_w&callback=initMap&libraries=&v=weekly" async></script>
         <br>
         <div class="container-sm">
-          <h4 class="display-4">Directions</h4>
-          <ol>
-            <li>Use your mouse (On Web) or Finger (On Mobile) to move around the map</li>
-            <li> Click on the fire Icons to view information about occured fires</li>
-            <li>Red fire icons on the map indicate fires that are occuring during the day</li>
-            <li>Black Icons on the map indicate fires that are occuring during the night</li>
-          </ol>
+          <p>
+            <img src="images/map.png">This map shows data about fire hot spots occurring in near-real-time for the Mae Ping National Park area.
+            <br>เเผนที่นี้แสดงพื้นที่เกิดไฟป่าใกล้เคียงเวลาจริงในอุทยานเเห่งชาติแม่ปิง
+            <br>
+            <br>
+            <img src="images/dayfire.png">The orange fire icons mean the fire occurred in the daytime.
+            <br>เครื่องหมายไฟสีส้ม หมายถึงพื้นที่ไฟป่าที่เกิดในเวลากลางวัน
+            <br>
+            <br>
+            <img src="images/nightfire.png">The black fire icons mean the fire occurred in the nighttime.
+            <br>เครื่องหมายไฟสีดำ หมายถึงพื้นที่ไฟป่าที่เกิดในเวลากลางคืน
+            <br>
+            <br>
+            <img src="images/click.png">You can hold down on the map and move it around to scroll to different areas of Thailand.
+            <br>ท่านสามารถกดค้างที่แผนที่เเละเลื่อนไปยังพื้นที่อื่นๆในประเทศไทยได้
+            <br>
+            <br>
+            <img src="images/document.png">When you click on a fire icon, it will show you information on the latitude and longitude, UTM coordinates, the date of the fire, the time of day, and whether the fire occurred during the day or night.
+            <br>เมื่อท่านกดที่เครื่องหมายไฟ จะเเสดงข้อมูล ละติจูดและลองจิจูด พิกัดภูมิศาสตร์ วันที่เกิดไฟ เวลาที่เกิดไฟ เเละสามารถทราบได้ว่าเกิดในเวลากลางวันหรือเวลากลางคืน
 
+          </p>
         </div>
 
       </div>

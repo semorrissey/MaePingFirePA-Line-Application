@@ -16,7 +16,6 @@ body {
 }
 
 #map {
-  width: 75%;
   height: 500px;
 }
 
@@ -32,10 +31,7 @@ div{
   text-align: center;
 }
 */
-#windy {
-  width: 75%;
-  height: 500px;
-}
+
 
 #link:hover {
   animation-name: colorChange;
