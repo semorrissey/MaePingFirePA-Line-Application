@@ -1,5 +1,14 @@
 @import '~mdb-ui-kit/css/mdb.min.css';
 
+body {
+  background-image: url("/images/back1.jpg");
+  background-repeat: no-repeat;
+  background-origin: content-box;
+  background-position: center center;
+  position: static;
+  background-size: cover;
+}
+
 #center {
   margin: auto;
   width: 100%;
@@ -7,18 +16,11 @@
 }
 
 #map {
-  width: 75%;
   height: 500px;
 }
 
-.centerr {
-  margin: auto;
-  width: 100%;
-  display: block;
-}
-
-.container {
-padding: 100px;
+#jumbo {
+  padding: 50px;
 }
 
 /*
@@ -31,9 +33,36 @@ div{
 */
 
 
-#windy {
-  width: 75%;
-  height: 500px;
+#link:hover {
+  animation-name: colorChange;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: #FFED15;
+  }
+
+  20% {
+    color: #E8AE00;
+  }
+
+  40% {
+    color: #FF9000;
+  }
+
+  60% {
+    color: #E84800;
+  }
+
+  80% {
+    color: #FF1709;
+  }
+
+  100% {
+    color: #FFED15;
+  }
 }
 
 .threeSpread {

@@ -23,7 +23,6 @@ const client = new line.Client(config);
 
 app.use(express.static('public'));
 
-
 app.get('/send-id', function(req, res) {
   res.json({
     id: myLiffId
@@ -54,10 +53,6 @@ app.get("/Windy", function(req, res) {
   res.sendFile(__dirname + "/public/windy.html")
 });
 
-app.get("/Nasa%20FIRMS", function(req, res) {
-  res.sendFile(__dirname + "/public/nasafirms.html")
-});
-
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -79,82 +74,6 @@ const dbClient = new MongoClient(uri, {
   useUnifiedTopology: true
 });
 //parsing Nasa information
-
-//reads file into array and converts to JSON
-function reading() {
-  fs.readFile(__dirname + '/public/tmp/VIIRS_I_SouthEast_Asia_VNP14IMGTDL_NRT_2021068.txt', 'utf8', function read(err, data) {
-    if (err) throw err;
-    const info = data.toString();
-    var array = info.split("\n");
-    var jsonKeys = array[0].split(",");
-    array.splice(0, 1);
-    var jsonResult = new Array;
-    for (i in array) {
-      var temp = array[i].split(",");
-      var json = {};
-      for (j in temp) {
-        json[jsonKeys[j]] = temp[j];
-      }
-      jsonResult.push(JSON.stringify(json));
-    }
-    fetch("https://maepingfirepa.herokuapp.com/push", {
-      method: "POST",
-      body: JSON.stringify(jsonResult),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
-  });
-}
-
-
-//requests from database
-
-async function addDocs(info) {
-  try {
-    await dbClient.connect().then(() => console.log('MongoDB connected...'))
-      .catch(err => console.log(err));;
-
-    const collection = dbClient.db("FireData").collection("NasaFirmsData");
-
-    const options = {
-      ordered: true
-    };
-
-    const result = await collection.insertMany(info, options);
-    console.log('${result.insertedCount} documents were inserted');
-  } finally {
-    await dbClient.close();
-  }
-}
-app.post("/push", bodyParser.json(), function(req, res) {
-  addDocs(req.body).catch(console.dir);
-});
-
-
-// fetch from source apis
-
-async function csvDownload() {
-  const url = 'https://nrt3.modaps.eosdis.nasa.gov/api/v2/content/archives/FIRMS/README.pdf'; // link to file you want to download
-  const path = "/public/tmp/" // where to save a file
-
-  const downloadFile = (async (url, path) => {
-    const res = await fetch(url, {
-      headers: {
-        'Authorization': 'Bearer bWFlcGluZ25vZmlyZTpiV0ZsY0dsdVoyNXZabWx5WlVCbmJXRnBiQzVqYjIwPToxNjE1MjUyMTUxOmEwZTc5OTg4YzI2Yjg5ZTMxZWViYzFlOGI5MzQ4MGFkMzVmNTQwNzQ'
-      }
-    });
-    const fileStream = fs.createWriteStream(path);
-    await new Promise((resolve, reject) => {
-      res.body.pipe(fileStream);
-      res.body.on("error", reject);
-      fileStream.on("finish", resolve);
-    });
-  });
-  console.log("i worked");
-  return true;
-}
-
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
       method: 'POST',
@@ -199,12 +118,18 @@ async function cuSenseFetch(sensor) {
       stationData.sensor = responseData[sensor].info["project"];
 
       const date = new Date(stationData[0].time.substr(0, 19));
-      const messageResponse = "Data provided by " + stationData.sensor + " for " + stationData.name + " in " + stationData.province + "\n" + "On " + date.toDateString() +
+      const messageResponse = "Data provided by " + stationData.sensor + " for " + stationData.name + " in " + stationData.province + ",\n" + "On " + date.toDateString() +
         ", \n" + "The temperature is " + stationData[0].temp + " ℃, \n" + "PM1 concentration is " + stationData[0]["pm1"] + " µg/m3, \n" + "PM25 concentration is " + stationData[0]["pm25"] + " µg/m3, \n" + "PM10 concentration is " + stationData[0]["pm10"] + " µg/m3, \n" + "The humidity is " + stationData[0].humid + "%. \n" + "Data changes every hour!";
 
       return messageResponse;
     });
 }
+
+app.get("/recieve", async function(req, res) {
+  let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
+  let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
+  res.json(sensorOne + "\n \n \n" + sensorTwo + "\n \n \n");
+});
 
 // event handler
 async function handleEvent(event) {
@@ -219,7 +144,6 @@ async function handleEvent(event) {
     text: event.message.text
   };
   if (event.message.text.match("NASA FIRMS")) {
-    reading();
     //let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',

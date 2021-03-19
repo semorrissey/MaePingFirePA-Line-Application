@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MaePing National Park Personal Assistant</title>
-
+  <link rel="shortcut icon" type="image/jpg" href="https://img.icons8.com/emoji/48/000000/fire.png" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Google Fonts -->
@@ -55,18 +55,18 @@
     function initMap() {
       map = new google.maps.Map(document.getElementById("map"), {
         center: {
-          lat: 15.0,
-          lng: 100.0
+          lat: 17.5960,
+          lng: 98.8056
         },
-        zoom: 7,
+        zoom: 8,
       });
 
       const icons = {
         day: {
-          icon: "dayfire.png",
+          icon: "images/dayfire.png",
         },
         night: {
-          icon: "nightfire.png",
+          icon: "images/nightfire.png",
         },
       };
 
@@ -75,9 +75,9 @@
             lat: 15.3636,
             lng: 100.18719
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:48",
-          dayOrNight: "Day or Night: D",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:48",
+          dayOrNight: "D",
           type: "day",
         },
         {
@@ -85,9 +85,9 @@
             lat: 16.97671,
             lng: 97.2366
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:54",
-          dayOrNight: "Day or Night: N",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:54",
+          dayOrNight: "N",
           type: "night",
         },
         {
@@ -95,9 +95,9 @@
             lat: 17.25048,
             lng: 98.51827
           }],
-          Date: "Date of Fire: 2021-03-08",
-          timeOfDay: "Time of Day: Day - 06:54",
-          dayOrNight: "Day or Night: D",
+          Date: "2021-03-08",
+          timeOfDay: "Day - 06:54",
+          dayOrNight: "D",
           type: "day",
         },
         {
@@ -147,58 +147,71 @@
 
 
 <body>
-  <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="Home">MaePing FirePA</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="LINE">LINE</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Fire Timeline">Fire Timeline</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Instructional Videos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="Nasa FIRMS">Nasa FIRMS</a></li>
-              <li><a class="dropdown-item" href="CuSense">CuSense</a></li>
-              <li><a class="dropdown-item" href="Windy">Windy</a></li>
-            </ul>
-          </li>
-        </ul>
+  <div class="container">
+    <nav class="mdb-navbar navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a id="link" class="navbar-brand" href="Home">MaePing FirePA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="link" class="nav-link active" aria-current="page" href="Home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="LINE">About LINE Official Account</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Fire Timeline"> Nasa FIRMS</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="CuSense">CuSense</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Windy">Windy</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav>
-
-  <div id="Fire Timeline" class=" animated fadeInUp">
-    <div class="container-sm" id="center">
-      <h1 class="display-1">Fire Hotspot Timeline</h1>
-    </div>
-    <div id="map" class="centerr container"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3KYwKVRO-jV0NFiGHlTc5qXuKlO9OT_w&callback=initMap&libraries=&v=weekly" async></script>
-    <p> Red Icons on the map indicate fires that are occuring during the day ธันวาคม</p>
-    <p> Black Icons on the map indicate fires that are occuring during the day</p>
-    <!-- place fire timeline in container div once finished or for testing -->
-    <div class="container-fluid"></div>
+    </nav>
   </div>
 
-  <div id="Nasa FIRMS" style="visibility: hidden; display:none;" class=" animated fadeInUp">
-    <h1 class="display-1"> Nasa FIRMS</h1>
-    <p> This is a placeholder video </p>
-    <div class="container-sm" class="centerr">
-      <iframe width="560" height="315" class="embed-responsive-item" src="https://www.youtube.com/embed/FGgtwEQ-BTk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
-    </div>
+  <div id="Fire Timeline" class=" animated fadeInUp">
+    <div class="container animated fadeInUp slow" id="jumbo">
+      <div class="jumbotron animated fadeInUp">
+        <div class="container-sm" id="center">
+          <h3 class="display-4">Nasa FIRMS Fire Timeline Tool</h3>
+        </div>
+        <div id="map" class="center container-fluid"></div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3KYwKVRO-jV0NFiGHlTc5qXuKlO9OT_w&callback=initMap&libraries=&v=weekly" async></script>
+        <br>
+        <div class="container-sm">
+          <p>
+            <img src="images/map.png">This map shows data about fire hot spots occurring in near-real-time for the Mae Ping National Park area.
+            <br>เเผนที่นี้แสดงพื้นที่เกิดไฟป่าใกล้เคียงเวลาจริงในอุทยานเเห่งชาติแม่ปิง
+            <br>
+            <br>
+            <img src="images/dayfire.png">The orange fire icons mean the fire occurred in the daytime.
+            <br>เครื่องหมายไฟสีส้ม หมายถึงพื้นที่ไฟป่าที่เกิดในเวลากลางวัน
+            <br>
+            <br>
+            <img src="images/nightfire.png">The black fire icons mean the fire occurred in the nighttime.
+            <br>เครื่องหมายไฟสีดำ หมายถึงพื้นที่ไฟป่าที่เกิดในเวลากลางคืน
+            <br>
+            <br>
+            <img src="images/click.png">You can hold down on the map and move it around to scroll to different areas of Thailand.
+            <br>ท่านสามารถกดค้างที่แผนที่เเละเลื่อนไปยังพื้นที่อื่นๆในประเทศไทยได้
+            <br>
+            <br>
+            <img src="images/document.png">When you click on a fire icon, it will show you information on the latitude and longitude, UTM coordinates, the date of the fire, the time of day, and whether the fire occurred during the day or night.
+            <br>เมื่อท่านกดที่เครื่องหมายไฟ จะเเสดงข้อมูล ละติจูดและลองจิจูด พิกัดภูมิศาสตร์ วันที่เกิดไฟ เวลาที่เกิดไฟ เเละสามารถทราบได้ว่าเกิดในเวลากลางวันหรือเวลากลางคืน
 
+          </p>
+        </div>
+
+      </div>
+    </div>
   </div>
 
 </body>

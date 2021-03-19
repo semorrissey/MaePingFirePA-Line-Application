@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>MaePing National Park Personal Assistant</title>
-
+  <link rel="shortcut icon" type="image/jpg" href="https://img.icons8.com/emoji/48/000000/fire.png" />
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Google Fonts -->
@@ -31,6 +31,12 @@
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
   <script src="https://api.windy.com/assets/map-forecast/libBoot.js"></script>
 
+  <style>
+    #windy {
+      height: 500px;
+    }
+  </style>
+
   <script>
     const options = {
       // Required: API key
@@ -40,9 +46,9 @@
       verbose: true,
 
       // Optional: Initial state of the map
-      lat: 15.0,
-      lon: 100.0,
-      zoom: 6.5
+      lat: 17.5960,
+      lon: 98.8056,
+      zoom: 8
     };
 
     // Initialize Windy API
@@ -56,7 +62,7 @@
       // .map is instance of Leaflet map
 
       L.popup()
-        .setLatLng([15.0, 101.0])
+        .setLatLng([17.5960, 98.8056])
         .setContent("Welcome to Windy! You can use this window to check the weather and temperature in Thailand.")
         .openOn(map);
     });
@@ -68,43 +74,61 @@
 
 
 <body>
-  <nav class="mdb-navbar navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="Home">MaePing FirePA</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="Home">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="LINE">LINE</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Fire Timeline">Fire Timeline</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Instructional Videos
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="Nasa FIRMS">Nasa FIRMS</a></li>
-              <li><a class="dropdown-item" href="CuSense">CuSense</a></li>
-              <li><a class="dropdown-item" href="Windy">Windy</a></li>
-            </ul>
-          </li>
-        </ul>
+  <div class="container">
+    <nav class="mdb-navbar navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a id="link" class="navbar-brand" href="Home">MaePing FirePA</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a id="link" class="nav-link active" aria-current="page" href="Home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="LINE">About LINE Official Account</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Fire Timeline"> Nasa FIRMS</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="CuSense">CuSense</a>
+            </li>
+            <li class="nav-item">
+              <a id="link" class="nav-link" href="Windy">Windy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  <div class=" animated fadeInUp">
+    <div class="container animated fadeInUp slow" id="jumbo">
+      <div class="jumbotron animated fadeInUp">
+        <h3 class="display-4"> Windy.com Map Tool</h3>
+        <div id="windy" class="center"></div>
+        <br>
+        <div class="container-sm">
+          <p>
+          You can use this map to look at the temperature and wind speed in and around Thailand. Use the button in the top
+          right hand corner to change Map Types. Click the play button in the bottom left to play and pause the timeline
+          <br><br>
+          If you would like to view more information you can click on the Windy icon that is located at the top of the map.
+          This will take you to the official Windy website where you can access information on air quality, rain and thunder, clouds, waves, humidity, PM2.5,
+          visibility, and ozone.
+          <br><br>
+          ท่านสามารถใช้แผนที่นี้ในการตรวจสอบอุณหภูมิเเละความเร็วลมรอบๆประเทศไทยได้
+          หากท่านต้องการทราบข้อมูลเพิ่มเติม ท่านสามารถกดที่เครื่องหมายวินดี้ที่อยู่ข้างบนแผนที่
+          ท่านจะเข้าสู่หน้าเว็บไซต์ของวินดี้เเละสามารถทราบคุณภาพอากาศ ฝนเเละพายุ การเคลื่อนที่ของกลุ่มเมฆ คลื่นทะเล ความชื้น ค่าฝุ่นPM2.5 ความสามารถในการมองเห็น เเละ โอโซน
+          </p>
+
+        </div>
       </div>
     </div>
-  </nav>
-
-
-
-  <div id="Windy" class=" animated fadeInUp">
-    <h1 class="display-1"> Windy</h1>
-    <div id="windy" class="centerr"></div>
   </div>
 
 </body>
