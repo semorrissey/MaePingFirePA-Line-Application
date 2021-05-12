@@ -114,7 +114,7 @@ function createMap(provinceData, coordinates) {
 
         // This function finds all the dots within the feature and make them red
         function firesInsideProvince(feature) {
-            var allCoord = new Array; // An array for all the coordinates inside the province
+            allCoord = new Array;
             var i;
             for(i = 0; i < dataForDate.length; i++) {
                 if(d3.geoContains(feature, [dataForDate[i].longitude, dataForDate[i].latitude])) {
@@ -125,7 +125,7 @@ function createMap(provinceData, coordinates) {
             console.log(allCoord);
         }
     }
-
+    var allCoord = new Array; // An array for all the coordinates inside the province
 
     // Finds the overlayPane div and places an svg layer inside that has a class name of "circle-layer"
     // There is also a g div in the svg with a name of "inner-CL"
@@ -182,13 +182,13 @@ function createMap(provinceData, coordinates) {
                 };
 
                 // What happens when the mouse hovers over the dot
-                allCircles[i].onmouseover = function () {
-                    d3.select(this).style('fill', '#F50D00')
+               allCircles[i].onmouseover = function () {
+                   this.setAttribute('fill', '#F50D00')
                 }
 
                 // What happens when the mouse no longer hovers over the dot
                 allCircles[i].onmouseout = function () {
-                    d3.select(this).style('fill', '#FFD061')
+                    this.setAttribute('fill', '#FFD061')
                 }
             }
         }
@@ -246,12 +246,14 @@ function createMap(provinceData, coordinates) {
                         document.querySelector('#satellite').innerHTML = dataForDate[wildfireID].satellite
                         document.querySelector('#version').innerHTML = dataForDate[wildfireID].version
                     };
+
                     allCircles[i].onmouseover = function () {
-                        d3.select(this).style('fill', '#F50D00')
+                        this.setAttribute('fill', '#F50D00')
                     }
                     allCircles[i].onmouseout = function () {
-                        d3.select(this).style('fill', '#FFD061')
+                        this.setAttribute('fill', '#FFD061')
                     }
+
                 }
             }
         }
