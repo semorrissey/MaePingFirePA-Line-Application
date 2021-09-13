@@ -67,7 +67,7 @@ function createMap(provinceData, coordinates) {
     function addProvinces() {
         geojson = L.geoJSON(provinces, {
             style: style,
-            onEachFeature: onEachFeature
+            onEachFeature, make_graph
         }).addTo(map);
     }
 
@@ -92,15 +92,42 @@ function createMap(provinceData, coordinates) {
     // What gets added to each province object. For this, we just tell it what to do when its clicked
     function onEachFeature(feature, layer) {
         layer.on({
-            click: zoomToFeature
+            click: zoomToFeature,
         });
+    }
+    function make_graph(province) {
+        console.log("You clicked on a province");
+        console.log(province)
+
+        // Lets get all the coordinates for the past week
+        let timeline_coords = coordinates.filter(function(d) {
+            return d3.geoContains(province, [d["longitude"], d["latitude"]]);
+        });
+
+        // Now lets get the dates, and how many coords for each date
+        let graph_array = []
+        let graph_unique_dates = new Set()
+
+        timeline_coords.forEach(coord => {
+            let date = coord["acq_date"]
+            if(!graph_unique_dates.has(date)) { // Date does not exists
+                // Add date to set and final array
+                graph_unique_dates.add(date)
+                graph_array.push( { "date" : date, "count" : 1 } )
+            }
+            else {
+                let test = graph_array.find(item=>item.date==date)
+                test["count"] = test["count"] + 1
+            }
+        })
+        // console.log(graph_array)
     }
 
     // What happens when you clean on the geoJSON feature.
     // e is the mouse event. e.target is the province object
     function zoomToFeature(e) {
+        make_graph(e.target.feature)
         map.flyToBounds(e.target.getBounds());
-        console.log("The name of the province is" + e.target.feature.properties.name);
 
         // Need to reset and make all the dots yellow again.
         for (var i = 0; i < dataForDate.length; i++) {
@@ -109,7 +136,6 @@ function createMap(provinceData, coordinates) {
 
         document.querySelector('#provinceName').innerHTML = e.target.feature.properties.name; // Selector for the dots in the specific province you clicked on
         var j;
-        console.log("starting zoom");
         firesInsideProvince(e.target.feature);
 
         // This function finds all the dots within the feature and make them red
@@ -122,7 +148,6 @@ function createMap(provinceData, coordinates) {
                     allCoord.push(dataForDate[i]);
                 }
             }
-            console.log(allCoord);
         }
     }
     var allCoord = new Array; // An array for all the coordinates inside the province
@@ -276,7 +301,6 @@ function createMap(provinceData, coordinates) {
      * needs to recalculate how big it is. The wildfire data also needs to recalculate where to draw itself.
      */
     function reset() {
-        console.log("Starting reset");
         var bounds = path.bounds(provinceData),
             topLeft = bounds[0],
             bottomRight = bounds[1];
@@ -303,3 +327,5 @@ function createMap(provinceData, coordinates) {
     }
 
 }
+
+
