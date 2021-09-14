@@ -339,15 +339,35 @@ function createMap(provinceData, coordinates) {
         //1. Load your Dataset
         // const dataset = await d3.csv("./../../Internet Usage.csv");
 
+        // var data = [
+        //     {"date": "2021-01-28", "event": "A"},
+        //     {"date": "Jun 15, 1971", "event": "B"},
+        //     {"date": "Mar 30, 1972", "event": "C"},
+        //     {"date": "Jan 1, 1973", "event": "D"},
+        //     {"date": "Jun 15, 1973", "event": "E"}
+        // ];
 
+        // var parseTime = d3.timeParse("%Y-%m-%d");
+        //
+        // var dates = [];
+        // for (let obj of data) {
+        //     dates.push(parseTime(obj.date));
+        // }
+        // console.log(dates)
 
         //Check the sample values available in the dataset
         //console.table(dataset[0]);
-        dataset = [[1, 2], [3, 4],[2, 3],[5,1],[4,6]]
+        // dataset = [{date: 1, count: 1},{date: 2, count: 4},{date: 3, count: 1},{date: 4, count: 6},{date: 5, count: 7},{date: 6, count: 6}]
+
+        // console.log(dataset)
 
         const yAccessor = (d) => d.count;
-        // const dateParser = d3.timeParse("%d/%m/%Y");
-        const xAccessor = (d) => (d.date);
+        const dateParser = d3.timeParse("%Y-%m-%d");
+        const xAccessor = (d) => (dateParser(d.date));
+        // const xAccessor = (d) => (d.date);
+        // console.log(dataset[0].date)
+        // console.log(dateParser(dataset[0].date))
+        // console.log(typeof dateParser(dataset[0].date))
 
         //Check the value of xAccessor function now
         //console.log(xAccessor(dataset[0]));
@@ -393,7 +413,7 @@ function createMap(provinceData, coordinates) {
 
         const yScale = d3
             .scaleLinear()
-            .domain(d3.extent(dataset, yAccessor))
+            .domain([0,d3.max(dataset, yAccessor)])
             .range([dimensions.boundedHeight, 0]);
 
         // console.log(yScale(100));
@@ -435,10 +455,10 @@ function createMap(provinceData, coordinates) {
         const yAxis = bounds.append("g").call(yAxisGenerator);
 
         // Generate X Axis
-        const xAxisGenerator = d3.axisBottom().scale(xScale);
+        const xAxisGenerator = d3.axisBottom().ticks(dataset.length).scale(xScale);
         const xAxis = bounds
             .append("g")
-            .call(xAxisGenerator.tickFormat(d3.timeFormat("%b,%y")))
+            .call(xAxisGenerator.tickFormat(d3.timeFormat("%b,%d")))
             .style("transform", `translateY(${dimensions.boundedHeight}px)`);
 
         //9. Add a Chart Header
@@ -451,7 +471,7 @@ function createMap(provinceData, coordinates) {
             .attr("x", dimensions.width / 2)
             .attr("y", dimensions.margin.top / 2)
             .attr("text-anchor", "middle")
-            .text("My 2020 Internet Usage(in GB) ")
+            .text("Data for.....")
             .style("font-size", "36px")
             .style("text-decoration", "underline");
     }
