@@ -128,7 +128,7 @@ function createMap(provinceData, coordinates) {
         // console.log(xAccessor(graph_array[0]));
         // console.log(yAccessor(graph_array[0]));
 
-        drawLineChart(graph_array);
+        drawLineChart(graph_array, province.properties.name);
 
     }
 
@@ -335,31 +335,7 @@ function createMap(provinceData, coordinates) {
         this.stream.point(point.x, point.y);
     }
 
-    function drawLineChart(dataset) {
-        //1. Load your Dataset
-        // const dataset = await d3.csv("./../../Internet Usage.csv");
-
-        // var data = [
-        //     {"date": "2021-01-28", "event": "A"},
-        //     {"date": "Jun 15, 1971", "event": "B"},
-        //     {"date": "Mar 30, 1972", "event": "C"},
-        //     {"date": "Jan 1, 1973", "event": "D"},
-        //     {"date": "Jun 15, 1973", "event": "E"}
-        // ];
-
-        // var parseTime = d3.timeParse("%Y-%m-%d");
-        //
-        // var dates = [];
-        // for (let obj of data) {
-        //     dates.push(parseTime(obj.date));
-        // }
-        // console.log(dates)
-
-        //Check the sample values available in the dataset
-        //console.table(dataset[0]);
-        // dataset = [{date: 1, count: 1},{date: 2, count: 4},{date: 3, count: 1},{date: 4, count: 6},{date: 5, count: 7},{date: 6, count: 6}]
-
-        // console.log(dataset)
+    function drawLineChart(dataset, province_name) {
 
         const yAccessor = (d) => d.count;
         const dateParser = d3.timeParse("%Y-%m-%d");
@@ -474,7 +450,7 @@ function createMap(provinceData, coordinates) {
             .attr("x", dimensions.width / 2)
             .attr("y", dimensions.margin.top / 2)
             .attr("text-anchor", "middle")
-            .text("Data for.....")
+            .text("Data for " + province_name)
             .style("font-size", "36px")
             .style("text-decoration", "underline");
     }
