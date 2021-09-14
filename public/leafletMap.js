@@ -391,6 +391,9 @@ function createMap(provinceData, coordinates) {
 
         // 3. Draw Canvas
 
+        // clear canvas
+        document.getElementById("wrapper").innerHTML = ""
+
         const wrapper = d3
             .select("#wrapper")
             .append("svg")
