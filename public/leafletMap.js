@@ -99,6 +99,11 @@ function createMap(provinceData, coordinates) {
         console.log("You clicked on a province");
         console.log(province)
 
+        // Fetch
+        // Method: GET
+        // You're gonna get a response variable
+        // Parse out the data that got sent.
+
         // Lets get all the coordinates for the past week
         let timeline_coords = coordinates.filter(function(d) {
             return d3.geoContains(province, [d["longitude"], d["latitude"]]);

@@ -10,6 +10,18 @@ const fs = require("fs");
 const request = require('request');
 const bodyParser = require("body-parser");
 
+
+// Array needed to draw the graph on the server
+let array_for_graph = [{date: '2021-01-28', count: 2},{date: '2021-01-29', count: 1},{date: '2021-01-30', count: 1},{date: '2021-02-01', count: 2},{date: '2021-02-02', count: 4},{date: '2021-02-03', count: 1}];
+
+// app.get("/get_graph", function(req, res) {
+//   // Body
+//   // Res is what you send back.
+//   // Want to send array_for_graph back in the response
+// })
+
+
+
 require('dotenv').config();
 
 // create LINE SDK config from env variables
