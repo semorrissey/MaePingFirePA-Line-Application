@@ -25,7 +25,10 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
   <link rel='stylesheet' href='index.css'>
-  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+  <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>\
+
+<!--  for bar graph-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
 
 
 
@@ -55,7 +58,9 @@
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://d3js.org/d3-geo-projection.v3.min.js"></script>
 
-
+<!--  ARCGIS API-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.20/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.20/"></script>
 
 
 </head>
@@ -103,6 +108,8 @@
         <br>
 
         <div id="wrapper"></div>
+
+        <svg id="bar_graph" width="600" height="500"></svg>
 
         <div class="range-slider">
           <input class="range-slider__range" type="range" value="0" min="0" max="7" step="1" id="mySlider">
@@ -174,6 +181,7 @@
   </div>
 
   <script src="leafletMap.js"></script>
+
 
 </body>
 

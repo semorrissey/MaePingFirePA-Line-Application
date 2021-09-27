@@ -3,6 +3,7 @@ let width = 960,
     centered;
 
 
+
 // Promise.all first loads these files and will run the function afterwards.
 Promise.all([
     d3.json("thailand.json"),
@@ -113,27 +114,22 @@ function createMap(provinceData, coordinates) {
         let graph_array = []
         let graph_unique_dates = new Set()
 
+        uniqueDates.forEach(date => {
+            graph_array.push( { "date" : date, "count" : 0 } )
+        })
+
+        console.log(graph_array)
+
         timeline_coords.forEach(coord => {
             let date = coord["acq_date"]
-            if(!graph_unique_dates.has(date)) { // Date does not exists
-                // Add date to set and final array
-                graph_unique_dates.add(date)
-                graph_array.push( { "date" : date, "count" : 1 } )
-            }
-            else {
-                let test = graph_array.find(item=>item.date==date)
-                test["count"] = test["count"] + 1
-            }
+            let record = graph_array.find(item=>item.date==date)
+            record["count"] = record["count"] + 1
         })
-        console.log(graph_array)
-        const yAccessor = (d) => d.count;
-        // const dateParser = d3.timeParse("%d/%m/%Y");
-        const xAccessor = (d) => (d.date);
-        // Check the value of xAccessor function now
-        // console.log(xAccessor(graph_array[0]));
-        // console.log(yAccessor(graph_array[0]));
 
-        drawLineChart(graph_array, province.properties.name);
+        console.log(graph_array)
+
+        // drawLineChart(graph_array, province.properties.name);
+        drawBarGraph(graph_array, province.properties.name);
 
     }
 
@@ -460,7 +456,48 @@ function createMap(provinceData, coordinates) {
             .style("text-decoration", "underline");
     }
 
+    function drawBarGraph(data, province_name) {
+        document.getElementById("bar_graph").innerHTML = ""
 
+        var svg = d3.select("#bar_graph"),
+            margin = 200,
+            width = svg.attr("width") - margin,
+            height = svg.attr("height") - margin;
+
+
+        var xScale = d3.scaleBand().range ([0, width]).padding(0.4),
+            yScale = d3.scaleLinear().range ([height, 0]);
+
+        var g = svg.append("g")
+            .attr("transform", "translate(" + 100 + "," + 100 + ")");
+
+        // Step 2
+        xScale.domain(data.map(function(d) { return d.date; }));
+        yScale.domain([0, d3.max(data, function(d) { return d.count; })]);
+
+        g.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(xScale));
+
+        g.append("g")
+            .call(d3.axisLeft(yScale).tickFormat(function(d){
+                return d;
+            }).ticks(10))
+            .append("text")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .attr("text-anchor", "end")
+            .text("value");
+
+        g.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return xScale(d.date); })
+            .attr("y", function(d) { return yScale(d.count); })
+            .attr("width", xScale.bandwidth())
+            .attr("height", function(d) { return height - yScale(d.count); });
+    }
 
 }
 
