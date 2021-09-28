@@ -53,6 +53,7 @@ app.get("/Windy", function(req, res) {
   res.sendFile(__dirname + "/public/windy.html")
 });
 
+
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -66,13 +67,14 @@ app.post('/callback', line.middleware(config), (req, res) => {
 });
 
 
-//mongodb connection setup
-const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
-const dbClient = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+//mongodb connection setupf
+const mysqlConnection = require('./public/testconnection')
+// const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
+// const dbClient = new MongoClient(uri, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+
 //parsing Nasa information
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
@@ -97,6 +99,7 @@ async function windyFetch() {
       return responseData;
     })
 }
+
 
 async function cuSenseFetch(sensor) {
   return await fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
@@ -177,5 +180,6 @@ async function handleEvent(event) {
   return client.replyMessage(event.replyToken,
     echo);
 }
+
 
 app.listen(port, () => console.log(`app listening on port ${port}!`));

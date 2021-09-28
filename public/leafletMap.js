@@ -1,3 +1,5 @@
+const mysqlConnection = require('./testconnection');
+
 let width = 960,
     height = 700,
     centered;
@@ -19,6 +21,20 @@ Promise.all([
  * @param coordinates the csv file with the wildfire data
  */
 function createMap(provinceData, coordinates) {
+    mysqlConnection.query("SELECT * FROM NASA_Firm_Data", (err, rows, fields) => {
+        if(!err) {
+            let mapData = rows;
+            console.log(mapData);
+        }
+        else {
+            console.log("theres been an error getting the table");
+            console.log(err);
+        }
+    }) 
+
+    // fetch("/").then((res) => {
+    //     console.log(res);
+    // })
 
 
     var allGroup = d3.map(coordinates, function(d){return(d.acq_date);}); // This takes the entire column for the date
