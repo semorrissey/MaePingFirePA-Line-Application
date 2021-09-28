@@ -1,4 +1,8 @@
-const mysqlConnection = require('./testconnection');
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
+// const mysqlConnection = require("./testconnection");
+
+// const { get } = require("http");
 
 let width = 960,
     height = 700,
@@ -7,9 +11,24 @@ let width = 960,
 
 // Promise.all first loads these files and will run the function afterwards.
 Promise.all([
-    d3.json("thailand.json"),
+    // d3.json("thailand.json"),
     d3.csv("coordinates.csv")
-]).then( ([provinceData ,coordinates]) => {
+]).then( ([coordinates]) => {
+
+    fetch('/getdata', {
+        method:'POST',
+        body: JSON.stringify( { 'query' : "SELECT * FROM NASA_Firm_Data WHERE brightness > 320"} ),
+        headers : {
+            "Content-Type" : "application/json"
+        }
+    }).then(res => res.json())
+    .then(json => {
+        console.log(json);
+
+    })
+
+
+    let provinceData = 6543;
     createMap(provinceData, coordinates)
 
 })
@@ -21,20 +40,7 @@ Promise.all([
  * @param coordinates the csv file with the wildfire data
  */
 function createMap(provinceData, coordinates) {
-    mysqlConnection.query("SELECT * FROM NASA_Firm_Data", (err, rows, fields) => {
-        if(!err) {
-            let mapData = rows;
-            console.log(mapData);
-        }
-        else {
-            console.log("theres been an error getting the table");
-            console.log(err);
-        }
-    }) 
 
-    // fetch("/").then((res) => {
-    //     console.log(res);
-    // })
 
 
     var allGroup = d3.map(coordinates, function(d){return(d.acq_date);}); // This takes the entire column for the date

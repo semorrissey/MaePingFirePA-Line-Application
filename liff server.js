@@ -9,6 +9,9 @@ const https = require("https");
 const fs = require("fs");
 const request = require('request');
 const bodyParser = require("body-parser");
+const Nasa_Firms = require("./public/routes/nasa_firms")
+const mysqlConnection=require("./public/testconnection")
+
 
 require('dotenv').config();
 
@@ -54,6 +57,24 @@ app.get("/Windy", function(req, res) {
 });
 
 
+// DATABASE STUFF
+app.use('/nasa_firms', Nasa_Firms)
+
+app.post("/getdata", bodyParser.json(), function(req, res) {
+  let query = req.body
+  mysqlConnection.query(query["query"], (err, rows, fields) => {
+    if(!err) {
+        let mapData = rows;
+        res.send(mapData)
+    }
+    else {
+        console.log(err);
+    }
+  })
+})
+
+
+
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -68,7 +89,7 @@ app.post('/callback', line.middleware(config), (req, res) => {
 
 
 //mongodb connection setupf
-const mysqlConnection = require('./public/testconnection')
+// const mysqlConnection = require('./public/testconnection')
 // const uri = `mongodb+srv://admin:${process.env.DB_PASSWORD}@cluster0.em7pv.mongodb.net/FireData?retryWrites=true&w=majority`;
 // const dbClient = new MongoClient(uri, {
 //   useNewUrlParser: true,

@@ -67,8 +67,17 @@ function insertIntoDB(csvRow) {
     
 }
 
-Router.get("/", (req, res) => {  
-    getData(url,res);
+Router.get("/", (req, res) => {
+    //getData(url,res);
+    mysqlConnection.query("SELECT * FROM NASA_Firm_Data WHERE brightness > 320", (err, rows, fields) => {
+        if(!err) {
+            let mapData = rows;
+            res.send(mapData[0])
+        }
+        else {
+            console.log(err);
+        }
+    }) 
 })
 
 module.exports = Router;
