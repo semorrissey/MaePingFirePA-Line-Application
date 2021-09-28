@@ -17,7 +17,7 @@ Promise.all([
 
     fetch('/getdata', {
         method:'POST',
-        body: JSON.stringify( { 'query' : "SELECT * FROM NASA_Firm_Data WHERE brightness > 320"} ),
+        body: JSON.stringify( { 'query' : "SELECT * FROM NASA_Firm_Data"} ),
         headers : {
             "Content-Type" : "application/json"
         }
