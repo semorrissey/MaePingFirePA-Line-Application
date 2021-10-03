@@ -239,8 +239,6 @@ function createMap(provinceData, coordinates) {
      * @param e is a mouse click event
      */
     function changeDate(e) {
-        console.log("slider value: " + document.getElementById("mySlider").value);
-
         // Update the desired date
         dataForDate = coordinates.filter(function(d) {
             return d["acq_date"] === uniqueDates[document.getElementById("mySlider").value]
