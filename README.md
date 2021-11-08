@@ -8,7 +8,7 @@ This version is where I finished my research term and set it up to be picked up 
 
 https://wildfire-timeline.herokuapp.com/
 
-## For How To Run WebApp
+## How To Run WebApp
 
 In the root directory, run the command below and navigate to http://localhost:5000/
 ### `npm start`
