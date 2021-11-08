@@ -38,7 +38,8 @@
       /*height: 700px;*/
     }
 
-    table, th {
+    table,
+    th {
       border: 1px solid black;
     }
   </style>
@@ -48,9 +49,7 @@
 
 
   <link rel="stylesheet" href="leafletstyle.css">
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-          integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-          crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
 
   <script src="https://d3js.org/d3.v6.min.js"></script>
   <script src="https://d3js.org/d3-geo-projection.v3.min.js"></script>
@@ -62,6 +61,7 @@
 
 
 <body>
+  <!-- Navigation Bar Container-->
   <div class="container">
     <nav class="mdb-navbar navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -92,6 +92,7 @@
     </nav>
   </div>
 
+  <!-- Main Content Container-->
   <div id="Fire Timeline" class=" animated fadeInUp">
     <div class="container animated fadeInUp slow" id="jumbo">
       <div class="jumbotron animated fadeInUp">
@@ -99,12 +100,14 @@
           <h3 class="display-4">Nasa FIRMS Fire Timeline Tool</h3>
         </div>
         <div id="map" class="center container-fluid"></div>
-<!--        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3KYwKVRO-jV0NFiGHlTc5qXuKlO9OT_w&callback=initMap&libraries=&v=weekly" async></script>-->
-        <br>
 
+        <br>
+        <!-- Slider which displays the fires by day-->
         <div class="range-slider">
+          <p class="h6"> Timeline Slider</p>
+          <p> Slide to see the detected fires over time!</p>
           <input class="range-slider__range" type="range" value="0" min="0" max="7" step="1" id="mySlider">
-          <p>Value: <span id="sliderValue"></span></p>
+          <p>Date: <span id="sliderValue"></span></p>
         </div>
 
         <p>The name of the province is </p>
@@ -141,7 +144,7 @@
           </tr>
 
         </table>
-
+        <!-- Directions-->
         <div class="container-sm">
           <p>
             <img src="images/map.png">This map shows data about fire hot spots occurring in near-real-time for the Mae Ping National Park area.

@@ -4,7 +4,6 @@ const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 5000;
 const myLiffId = process.env.MY_LIFF_ID;
-//const wget = require('node-wget');
 const https = require("https");
 const fs = require("fs");
 const request = require('request');
@@ -21,14 +20,18 @@ const config = {
 // create LINE SDK client
 const client = new line.Client(config);
 
+//start express
 app.use(express.static('public'));
 
+//provided by LINE
 app.get('/send-id', function(req, res) {
   res.json({
     id: myLiffId
   });
 });
 
+
+//get requests for webpage navigation
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/LIFF.html");
 });
@@ -55,6 +58,7 @@ app.get("/Windy", function(req, res) {
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
+//Provided by LINE
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -65,6 +69,13 @@ app.post('/callback', line.middleware(config), (req, res) => {
     });
 });
 
+//'/recieve' GET Request for pushing data from the webserver to the webpage.
+app.get("/recieve", async function(req, res) {
+  let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
+  let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
+  res.json(sensorOne + "\n \n \n" + sensorTwo + "\n \n \n");
+});
+
 
 //mongodb connection setup
 const MongoClient = require('mongodb').MongoClient;
@@ -73,7 +84,12 @@ const dbClient = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
-//parsing Nasa information
+
+/**
+ * Function fetchs Weather Data from the Windy.com API. This Data includes temperature, precipitation, wind speeds, wind gust, and more.
+ * @param    {String} name    Name of the user
+ * @return   {JSON}          Weather Data from Windy API
+ */
 async function windyFetch() {
   return await fetch('https://api.windy.com/api/point-forecast/v2', {
       method: 'POST',
@@ -97,6 +113,12 @@ async function windyFetch() {
       return responseData;
     })
 }
+
+/**
+ * Function that fetchs from the CuSense API and formats it to be placed on the webpage or sent through LINE
+ * @param    {String} sensor    Name of the Sensor to fetch data from
+ * @return   {String}         Message to be sent
+ */
 
 async function cuSenseFetch(sensor) {
   return await fetch('https://www.cusense.net:8082/api/v1/sensorData/realtime/all', {
@@ -125,13 +147,15 @@ async function cuSenseFetch(sensor) {
     });
 }
 
-app.get("/recieve", async function(req, res) {
-  let sensorOne = await cuSenseFetch("cusensor3/8CAAB5852984");
-  let sensorTwo = await cuSenseFetch("cusensor3/8CAAB5851AD4");
-  res.json(sensorOne + "\n \n \n" + sensorTwo + "\n \n \n");
-});
 
-// event handler
+
+/**
+ * Function that greets a user
+ * @author   LINE
+ * @author   Sean Morrissey
+ * @param    {events} event    Name of the user
+ * @return   {JSON}         Status Code and empty JSON object or JSON Object with Error Response Message
+ */
 async function handleEvent(event) {
   if (event.type !== 'message' || event.message.type !== 'text') {
     // ignore non-text-message event
@@ -144,7 +168,6 @@ async function handleEvent(event) {
     text: event.message.text
   };
   if (event.message.text.match("NASA FIRMS")) {
-    //let test = csvDownload();
     return client.replyMessage(event.replyToken, {
       type: 'text',
       text: "Currently, our Nasa FIRMS Fire Hotspot tool is underdevelopment. \n \n \n Please take a look at the following to see our webpage to view the tool: \n \n https://maepingfirepa.herokuapp.com/Fire%20Timeline"

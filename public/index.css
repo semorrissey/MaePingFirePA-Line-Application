@@ -23,16 +23,6 @@ body {
   padding: 50px;
 }
 
-/*
-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-}
-*/
-
-
 #link:hover {
   animation-name: colorChange;
   animation-duration: 5s;

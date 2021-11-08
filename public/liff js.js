@@ -1,3 +1,5 @@
+//JS Code provided by LINE that connects the web server to the Official LINE Account Bot
+
 import * as mdb from 'mdb-ui-kit'; // lib
 import {
   Input
